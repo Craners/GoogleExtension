@@ -11,5 +11,8 @@
   "background":
     {
         "scripts": ["thirdParty/jquery-3.3.1.min.js", "background.js"]
-    }
+    },
+  "permissions" : [
+    "https://www.flickr.com/photos/daves-f-stop/8079071366"
+  ]
 }
