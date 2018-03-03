@@ -1,6 +1,6 @@
 var settings = {
   "async": true,
-  "url": "https://www.flickr.com/photos/daves-f-stop/8079071366",
+  "url": "https://s3.amazonaws.com/123rf-chrome/",
   "method": "GET",
   "headers": {
     "Cache-Control": "no-cache",
@@ -9,5 +9,11 @@ var settings = {
 }
 
 $.ajax(settings).done(function (response) {
-  console.log(response);
+
+  var rand = Math.floor((Math.random() * 100) + 1);
+  var xml = response,
+  $xml = $( xml ),
+  $title = $xml.find( "Key" ).eq(rand);
+  var x = 'https://s3.amazonaws.com/123rf-chrome/'+ $title.text();
+  $('#back').css('background-image', 'url(' + x + ')');
 });
