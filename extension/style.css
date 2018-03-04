@@ -33,3 +33,7 @@ span {
   margin: auto;
   padding: 10px;
 }
+
+.mdl-chip__text{
+  color: black;
+}

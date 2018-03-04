@@ -9,6 +9,10 @@
          <!-- <span class="mdl-layout-title">Google Extension</span> -->
          <!-- Add spacer, to align navigation to the right -->
          <div class="mdl-layout-spacer"></div>
+         <span class="mdl-chip mdl-chip--contact" id="worldClock">
+          <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">T</span>
+          <span class="mdl-chip__text" id="worldClockTime">Contact Chip</span>
+         </span>
          <!-- Navigation -->
          <!-- <nav class="mdl-navigation">
            <a class="mdl-navigation__link" href="">Link</a>
@@ -18,7 +22,7 @@
      <div class="mdl-layout__drawer">
        <!-- <span class="mdl-layout-title">Title</span> -->
        <nav class="mdl-navigation">
-         <a class="mdl-navigation__link" href="">Link</a>
+         <a class="mdl-navigation__link" href="">World Clock</a>
          <!-- <a class="mdl-navigation__link" href="">Link</a>
          <a class="mdl-navigation__link" href="">Link</a>
          <a class="mdl-navigation__link" href="">Link</a> -->
@@ -41,4 +45,7 @@
   <script src="./thirdParty/mdl/material.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="thirdParty/moment.js"></script>
+  <script src="thirdParty/moment-timezone-with-data.js"></script>
+  <script src="worldClock.js"></script>
 </html>
