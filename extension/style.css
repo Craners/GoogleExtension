@@ -29,7 +29,7 @@ span {
      your background is light. */
   color: white;
 }
-.material-icon{
+.mdl-layout__drawer-button i{
   margin: auto;
   padding: 10px;
 }
