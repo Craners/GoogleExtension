@@ -15,5 +15,6 @@ $.ajax(settings).done(function (response) {
   $xml = $( xml ),
   $title = $xml.find( "Key" ).eq(rand);
   var x = 'https://s3.amazonaws.com/123rf-chrome/'+ $title.text();
-  $('#back').css('background-image', 'url(' + x + ')');
+//  $('#back').css('background-image', 'url(' + x + ')');
+  $('.layout-transparent').css('background-image', 'url(' + x + ')');
 });

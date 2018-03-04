@@ -19,3 +19,17 @@ span {
   font-weight: lighter;
   color: white;
 }
+
+.layout-transparent {
+  background: center / cover;
+}
+.layout-transparent .mdl-layout__header,
+.layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+.material-icon{
+  margin: auto;
+  padding: 10px;
+}
