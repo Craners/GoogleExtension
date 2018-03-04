@@ -35,7 +35,7 @@ function getLocation()
 {
   if(navigator.geolocation)
   {
-    navigator.geolocation.getCurrentPosition(success);
+    navigator.geolocation.getCurrentPosition(success, fail);
   }
   else {
     return;
@@ -47,6 +47,12 @@ function getLocation()
     longitude = position.coords.longitude;
     getWeather();
   }
+
+  function fail(error)
+  {
+    return;
+  }
+
 }
 
 getLocation();
