@@ -33,3 +33,34 @@ span {
   margin: auto;
   padding: 10px;
 }
+
+.mdl-cell--4-col
+{
+  display: flex;
+  justify-content: center;
+}
+
+.mdl-card
+{
+  width: auto;
+  height: auto;
+  background: white;
+  position: absolute;
+  min-height: auto;
+}
+
+.mdl-card__media
+{
+  background: transparent;
+}
+.mdl-card__media img
+{
+  padding:20px;
+}
+
+.mdl-card__media div, #weather-temperature div
+{
+  display: inline-block;
+}
+
+
