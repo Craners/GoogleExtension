@@ -8,14 +8,14 @@ var settings = {
   }
 }
 
-// $.ajax(settings).done(function (response) {
+$.ajax(settings).done(function (response) {
 
-//   var rand = Math.floor((Math.random() * 100) + 1);
-//   var xml = response,
-//   $xml = $( xml ),
-//   $title = $xml.find( "Key" ).eq(rand);
-//   var x = 'https://s3.amazonaws.com/123rf-chrome/'+ $title.text();
-// //  $('#back').css('background-image', 'url(' + x + ')');
-//   $('.layout-transparent').css('background-image', 'url(' + x + ')');
-// });
-  $('.layout-transparent').css('background-color', 'blue');
+  var rand = Math.floor((Math.random() * 100) + 1);
+  var xml = response,
+  $xml = $( xml ),
+  $title = $xml.find( "Key" ).eq(rand);
+  var x = 'https://s3.amazonaws.com/123rf-chrome/'+ $title.text();
+//  $('#back').css('background-image', 'url(' + x + ')');
+  $('.layout-transparent').css('background-image', 'url(' + x + ')');
+});
+  // $('.layout-transparent').css('background-color', 'blue');
