@@ -44,3 +44,13 @@ span {
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
 }
+
+#worldSwitch{
+  display: inline-block;
+  vertical-align: 0;
+  font-size: 100%;
+}
+.mdl-data-table td:first-of-type, .mdl-data-table th:first-of-type {
+  /* padding: 0; */
+
+}
