@@ -45,10 +45,16 @@ span {
   user-select: none; /* Standard */
 }
 
-#worldSwitch{
-  display: inline-block;
+.switchBtn{
+  display: inline-block !important;
   vertical-align: 0;
   font-size: 100%;
+}
+
+.switchWidth
+{
+  width: 60%;
+  text-align: center;
 }
 .mdl-data-table td:first-of-type, .mdl-data-table th:first-of-type {
   /* padding: 0; */
