@@ -34,6 +34,26 @@ span {
   padding: 10px;
 }
 
+.mdl-chip__text{
+  color: black;
+}
+
+#worldClockTime{
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+#worldSwitch{
+  display: inline-block;
+  vertical-align: 0;
+  font-size: 100%;
+}
+.mdl-data-table td:first-of-type, .mdl-data-table th:first-of-type {
+  /* padding: 0; */
+
+}
 .mdl-cell--4-col
 {
   display: flex;

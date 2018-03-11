@@ -2,27 +2,54 @@
 
 <head>
   <title>Extension tutorial</title>
-</head>
-<div class="layout-transparent mdl-layout mdl-js-layout">
-  <header class="mdl-layout__header mdl-layout__header--transparent">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <!-- <span class="mdl-layout-title">Google Extension</span> -->
-      <!-- Add spacer, to align navigation to the right -->
-      <div class="mdl-layout-spacer"></div>
-      <!-- Navigation -->
-      <!-- <nav class="mdl-navigation">
+ </head>
+ <div class="layout-transparent mdl-layout mdl-js-layout">
+     <header class="mdl-layout__header mdl-layout__header--transparent">
+       <div class="mdl-layout__header-row">
+         <!-- Title -->
+         <!-- <span class="mdl-layout-title">Google Extension</span> -->
+         <!-- Add spacer, to align navigation to the right -->
+         <div class="mdl-layout-spacer"></div>
+         <span class="mdl-chip mdl-chip--contact" id="worldClock">
+          <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">T</span>
+          <span class="mdl-chip__text" id="worldClockTime">Contact Chip</span>
+         </span>
+         <!-- Navigation -->
+         <!-- <nav class="mdl-navigation">
            <a class="mdl-navigation__link" href="">Link</a>
          </nav> -->
-    </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <!-- <span class="mdl-layout-title">Title</span> -->
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="">Link</a>
-      <!-- <a class="mdl-navigation__link" href="">Link</a>
-         <a class="mdl-navigation__link" href="">Link</a>
-         <a class="mdl-navigation__link" href="">Link</a> -->
+       </div>
+     </header>
+     <div class="mdl-layout__drawer">
+       <!-- <span class="mdl-layout-title">Title</span> -->
+       <nav class="mdl-navigation">
+         <div>
+            <a class="mdl-navigation__link" href="" id="worldSwitch">World Clock</a>
+            <span class="mdl-list__item-secondary-action" id="worldSwitch">
+             <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-1">
+               <input type="checkbox" id="list-switch-1" class="mdl-switch__input" checked />
+             </label>
+         </div>
+         <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable">
+            <thead>
+              <tr>
+                <th class="mdl-data-table__cell--non-numeric">Material</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
+              </tr>
+              <tr>
+                <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
+              </tr>
+              <tr>
+                <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </span>
     </nav>
   </div>
   <main class="mdl-layout__content">
@@ -48,13 +75,15 @@
   </main>
 </div>
 
-<script src="clock.js"></script>
-<script src="thirdParty/jquery-3.3.1.min.js"></script>
-<script src="background.js"></script>
-<script src="weather.js"></script>
-<link rel="stylesheet" href="./thirdParty/mdl/material.min.css">
-<script src="./thirdParty/mdl/material.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" type="text/css" href="style.css">
-
+  <script src="clock.js"></script>
+  <script src="thirdParty/jquery-3.3.1.min.js"></script>
+  <script src="background.js"></script>
+  <link rel="stylesheet" href="./thirdParty/mdl/material.min.css">
+  <script src="./thirdParty/mdl/material.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="thirdParty/moment.js"></script>
+  <script src="thirdParty/moment-timezone-with-data.js"></script>
+  <script src="worldClock.js"></script>
+  <script src="weather.js"></script>
 </html>

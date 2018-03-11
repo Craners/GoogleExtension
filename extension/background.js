@@ -18,3 +18,4 @@ $.ajax(settings).done(function (response) {
 //  $('#back').css('background-image', 'url(' + x + ')');
   $('.layout-transparent').css('background-image', 'url(' + x + ')');
 });
+  // $('.layout-transparent').css('background-color', 'blue');
