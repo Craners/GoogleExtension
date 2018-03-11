@@ -30,24 +30,12 @@
             <input type="checkbox" id="list-switch-1" class="mdl-switch__input" checked />
           </label>
         </span>
-        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable">
-          <thead>
-            <tr>
-              <th class="mdl-data-table__cell--non-numeric">Material</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="mdl-data-table__cell--non-numeric">Acrylic (Transparent)</td>
-            </tr>
-            <tr>
-              <td class="mdl-data-table__cell--non-numeric">Plywood (Birch)</td>
-            </tr>
-            <tr>
-              <td class="mdl-data-table__cell--non-numeric">Laminate (Gold on Blue)</td>
-            </tr>
-          </tbody>
-        </table>
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="addCity">
+            <label class="mdl-textfield__label" for="sample1">Add City...</label>
+          </div>
+        </form>
       </div>
 
       <div id="nav-weather">
@@ -86,6 +74,8 @@
 
 <script src="clock.js"></script>
 <script src="thirdParty/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="thirdParty/jquery-ui.css">
+<script src="thirdParty/jquery-ui.js"></script>
 <script src="background.js"></script>
 <link rel="stylesheet" href="./thirdParty/mdl/material.min.css">
 <link rel="stylesheet" type="text/css" href="style.css">
