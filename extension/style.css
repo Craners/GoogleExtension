@@ -53,8 +53,9 @@ span {
 
 .switchWidth
 {
-  width: 60%;
+  width: 75% !important;
   text-align: center;
+  padding: 15 0 15 0 !important;
 }
 .mdl-data-table td:first-of-type, .mdl-data-table th:first-of-type {
   /* padding: 0; */
