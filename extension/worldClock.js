@@ -12,7 +12,6 @@ x2 = moment(x2);   // parsed as 4:30 local time
 listOfTimes.push(x2);
 $("#worldClockTime").html(x2._i);
 $('#worldClockTime').attr("data-index", listOfTimes.indexOf(x2));
-console.log(listOfTimes);
 
 
 function ShowWorldClock(){

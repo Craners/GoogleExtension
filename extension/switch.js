@@ -1,0 +1,13 @@
+function switchVisibility(switchId, elementId) {
+    $('#' + switchId)[0].MaterialSwitch.on();
+
+    $('#' + switchId + ' input').change(function () {
+        $("#" + elementId).toggle();
+    });
+}
+
+$(document).ready(function () {
+    switchVisibility("checkWeather", "weather-card");
+    switchVisibility("checkClock", "worldClock");
+    switchVisibility("checkStock", "stock");
+});

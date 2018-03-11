@@ -90,4 +90,20 @@ span {
   display: inline-block;
 }
 
+#stock .mdl-chip
+{
+  height: auto;
+  display: table;
+}
+
+#stock-list
+{
+  padding: 0;
+}
+
+#stock-list li span
+{
+  font-size: inherit;
+}
+
 
