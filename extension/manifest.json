@@ -13,6 +13,7 @@
         "scripts": ["thirdParty/jquery-3.3.1.min.js", "background.js"]
     },
   "permissions" : [
-    "https://s3.amazonaws.com/"
+    "https://s3.amazonaws.com/",
+    "geolocation"
   ]
 }
