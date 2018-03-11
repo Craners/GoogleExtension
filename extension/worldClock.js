@@ -25,6 +25,7 @@ $(document).ready(function () {
     console.log('local storage not supported');
   }
 
+  SaveLocal('WorldClock','America/Toronto');
   $("#worldClockTime").html(x2._i);
   $('#worldClockTime').attr("data-index", listOfTimes.indexOf(x2));
   // console.log(x3);
