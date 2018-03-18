@@ -6,7 +6,7 @@ function SaveLocal(section, data) {
       var store = localStorage.getItem("data");
       var storeStr = JSON.parse(store);
 
-      if(storeStr[section].indexOf(data)==-1){
+      if (storeStr[section].indexOf(data) == -1) {
 
         storeStr[section].push(data);
         storeStr = JSON.stringify(storeStr);
@@ -21,5 +21,21 @@ function SaveLocal(section, data) {
   } else {
 
     console.log('local storage not supported');
+  }
+}
+function GetLocal(section) {
+
+  if (typeof (Storage) !== "undefined") {
+    if (localStorage.getItem("data")) {
+
+      var store = localStorage.getItem("data");
+      var storeStr = JSON.parse(store);
+
+      if (section in storeStr) { 
+
+        console.log('yes i have it');
+        return storeStr[section];
+      }
+    }
   }
 }

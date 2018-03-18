@@ -8,11 +8,19 @@ $(document).ready(function () {
   listOfTimes.push(m);
 
   if (typeof (Storage) !== "undefined") {
-    if (localStorage.getItem("clocks")) {
-      var name = 'America/Toronto';
-      var x1 = m.tz(name).format(); // 2013-11-18T06:00:00+01:00
-      x1 = moment(x1);   // parsed as 4:30 local time
-      listOfTimes.push(x1);
+    if (localStorage.getItem("data")) {
+
+      let InitlistOfTimes = GetLocal('WorldClock');
+      InitlistOfTimes.forEach(element => {
+
+        var x1 = m.tz(element).format(); // 2013-11-18T06:00:00+01:00
+        x1 = moment(x1);   // parsed as 4:30 local time
+        listOfTimes.push(x1);
+      });
+      // var name = 'America/Toronto';
+      // var x1 = m.tz(name).format(); // 2013-11-18T06:00:00+01:00
+      // x1 = moment(x1);   // parsed as 4:30 local time
+      // listOfTimes.push(x1);
     } else {
       var x1 = m.tz(def).format(); // 2013-11-18T06:00:00+01:00
       x1 = moment(x1);   // parsed as 4:30 local time
@@ -25,7 +33,6 @@ $(document).ready(function () {
     console.log('local storage not supported');
   }
 
-  SaveLocal('WorldClock','America/Toronto');
   $("#worldClockTime").html(x2._i);
   $('#worldClockTime').attr("data-index", listOfTimes.indexOf(x2));
   // console.log(x3);
@@ -57,8 +64,8 @@ $(document).ready(function () {
       // console.log(ui.item ?
       //   "Selected: " + ui.item.value + " aka " + ui.item.id :
       //   "Nothing selected, input was " + this.value);
-        ShowSnackBar("Added: " + ui.item.value);
-        SaveLocal('WorldClock',ui.item.value);        
+      ShowSnackBar("Added: " + ui.item.value);
+      SaveLocal('WorldClock', ui.item.value);
     }
   });
 });
