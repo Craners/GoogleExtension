@@ -86,7 +86,7 @@ span {
   display: inline-block;
 }
 
-#WorldClockAdd{
+#WorldClockAdd, #WeatherAdd, #StockAdd{
   width: 60%;
   padding-left: 20px;
 }
