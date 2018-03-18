@@ -58,6 +58,7 @@ $(document).ready(function () {
       //   "Selected: " + ui.item.value + " aka " + ui.item.id :
       //   "Nothing selected, input was " + this.value);
         ShowSnackBar("Added: " + ui.item.value);
+        SaveLocal('WorldClock',ui.item.value);        
     }
   });
 });

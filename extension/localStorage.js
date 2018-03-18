@@ -1,15 +1,20 @@
-function SaveLocal(section,data) {
+function SaveLocal(section, data) {
 
   if (typeof (Storage) !== "undefined") {
     if (localStorage.getItem("data")) {
 
       var store = localStorage.getItem("data");
       var storeStr = JSON.parse(store);
-      if(storeStr.section)
-      console.log(storeStr.section);
-      
+
+      if(storeStr[section].indexOf(data)==-1){
+
+        storeStr[section].push(data);
+        storeStr = JSON.stringify(storeStr);
+        localStorage.setItem("data", storeStr);
+      }
+
     } else {
-      var store = {section: [data]};
+      var store = { [section]: [data] };
       store = JSON.stringify(store);
       localStorage.setItem("data", store);
     }
