@@ -4,14 +4,14 @@ function SaveLocal(section,data) {
     if (localStorage.getItem("data")) {
 
       var store = localStorage.getItem("data");
-      // store = jQuery.parseJSON(store);
-      var storeStr = JSON.stringify(store);
-      console.log(storeStr);
+      var storeStr = JSON.parse(store);
+      if(storeStr.section)
+      console.log(storeStr.section);
       
     } else {
-      var store = `{${section}:[${data}]}`;
-      var storeStr = "'"+store+"'";
-      localStorage.setItem("data", storeStr);
+      var store = {section: [data]};
+      store = JSON.stringify(store);
+      localStorage.setItem("data", store);
     }
   } else {
 
