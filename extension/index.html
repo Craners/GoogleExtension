@@ -26,7 +26,7 @@
       <div id="nav-clock">
         <div class="mdl-navigation__link switchBtn switchWidth" href="">World Clock</div>
         <span class="mdl-list__item-secondary-action switchBtn">
-          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-1">
+          <label id="checkClock" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-1">
             <input type="checkbox" id="list-switch-1" class="mdl-switch__input" checked />
           </label>
         </span>
@@ -53,19 +53,28 @@
       <div id="nav-weather">
         <div class="mdl-navigation__link switchBtn switchWidth">Weather</div>
         <span class="mdl-list__item-secondary-action switchBtn">
-          <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-2">
+          <label id="checkWeather" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-2">
             <input type="checkbox" id="list-switch-2" class="mdl-switch__input" checked />
           </label>
         </span>
       </div>
+
+      <div id="nav-stock">
+          <div class="mdl-navigation__link switchBtn switchWidth">Stocks</div>
+          <span class="mdl-list__item-secondary-action switchBtn">
+            <label id="checkStock" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-3">
+              <input type="checkbox" id="list-switch-3" class="mdl-switch__input" checked />
+            </label>
+          </span>
+        </div>
 
     </nav>
   </div>
   <main class="mdl-layout__content">
     <div class="mdl-grid" id="back">
       <div class="mdl-cell mdl-cell--12-col"></div>
-      <div class="mdl-cell mdl-cell--4-col">
-        <div class="mdl-card">
+      <div id="weather" class="mdl-cell mdl-cell--4-col">
+        <div id="weather-card" class="mdl-card">
           <div class="mdl-card__media">
             <img id="weather-image" width="20" height="20" border="0" alt="">
             <div id="weather-location"></div>
@@ -78,8 +87,11 @@
           </div>
         </div>
       </div>
-      <div class="mdl-cell mdl-cell--4-col" id="date_time"></div>
-      <div class="mdl-cell mdl-cell--4-col"></div>
+      <div id="date_time" class="mdl-cell mdl-cell--4-col"></div>
+      <div id="stock" class="mdl-cell mdl-cell--4-col">
+          <ul id="stock-list" class='mdl-chip mdl-list'>
+          </ul>
+      </div>
     </div>
   </main>
 </div>
@@ -95,6 +107,7 @@
 <script src="thirdParty/moment-timezone-with-data.js"></script>
 <script src="worldClock.js"></script>
 <script src="weather.js"></script>
-
+<script src="switch.js"></script>
+<script src="stock.js"></script>
 
 </html>

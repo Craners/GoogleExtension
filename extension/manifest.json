@@ -14,6 +14,7 @@
     },
   "permissions" : [
     "https://s3.amazonaws.com/",
-    "geolocation"
+    "geolocation",
+    "https://www.alphavantage.co/"
   ]
 }

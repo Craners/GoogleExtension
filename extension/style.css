@@ -53,8 +53,9 @@ span {
 
 .switchWidth
 {
-  width: 60%;
+  width: 75% !important;
   text-align: center;
+  padding: 15 0 15 0 !important;
 }
 .mdl-data-table td:first-of-type, .mdl-data-table th:first-of-type {
   /* padding: 0; */
@@ -87,6 +88,22 @@ span {
 .mdl-card__media div, #weather-temperature div
 {
   display: inline-block;
+}
+
+#stock .mdl-chip
+{
+  height: auto;
+  display: table;
+}
+
+#stock-list
+{
+  padding: 0;
+}
+
+#stock-list li span
+{
+  font-size: inherit;
 }
 
 
