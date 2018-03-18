@@ -25,7 +25,7 @@ $(document).ready(function () {
     console.log('local storage not supported');
   }
 
-  SaveLocal('WorldClock','America/Toronto');
+  SaveLocal('WorldClock', 'America/Toronto');
   $("#worldClockTime").html(x2._i);
   $('#worldClockTime').attr("data-index", listOfTimes.indexOf(x2));
   // console.log(x3);
@@ -50,5 +50,14 @@ $(document).ready(function () {
     ShowWorldClock();
   });
 
-  showAutoComplete("#addCity");
+  showAutoComplete("#addCity", {
+    source: moment.tz.names(),
+    minLength: 2,
+    select: function (event, ui) {
+      // console.log(ui.item ?
+      //   "Selected: " + ui.item.value + " aka " + ui.item.id :
+      //   "Nothing selected, input was " + this.value);
+      ShowSnackBar("Added: " + ui.item.value);
+    }
+  });
 });
