@@ -1,3 +1,6 @@
+.mdl-layout__content{
+  overflow:hidden;
+}
 span {
   color: #cccccc;
   vertical-align: 50%;
@@ -53,13 +56,9 @@ span {
 
 .switchWidth
 {
-  width: 75% !important;
-  text-align: center;
-  padding: 15 0 15 0 !important;
-}
-.mdl-data-table td:first-of-type, .mdl-data-table th:first-of-type {
-  /* padding: 0; */
-
+  width: 65% !important;
+  /* text-align: center; */
+  padding: 15 0 15 20px !important;
 }
 .mdl-cell--4-col
 {
@@ -90,6 +89,10 @@ span {
   display: inline-block;
 }
 
+#WorldClockAdd, #WeatherAdd, #StockAdd{
+  width: 60%;
+  padding-left: 20px;
+}
 #stock .mdl-chip
 {
   height: auto;
@@ -106,4 +109,7 @@ span {
   font-size: inherit;
 }
 
+#cityInitial{
 
+  font-size: 10px;
+}
