@@ -1,3 +1,6 @@
+.mdl-layout__content{
+  overflow:hidden;
+}
 span {
   color: #cccccc;
   vertical-align: 50%;

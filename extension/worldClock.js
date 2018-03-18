@@ -2,9 +2,13 @@ $(document).ready(function () {
 
   var listOfTimes = [];
   var InitlistOfTimes =[];
+  var dateFormat = 'ddd, MMM D, H:mm'; //<-------- This part will get rid of the warning.
   init();
 
   function init() {
+
+    listOfTimes = [];
+    InitlistOfTimes =[];
 
     var def = moment.tz.guess(); //guess where they are?
     var m = moment();
@@ -17,15 +21,21 @@ $(document).ready(function () {
         InitlistOfTimes = GetLocal('WorldClock');
         InitlistOfTimes.forEach(element => {
 
-          var x1 = m.tz(element).format(); // 2013-11-18T06:00:00+01:00
+          var x1 = m.tz(element).format(dateFormat); // 2013-11-18T06:00:00+01:00
+          // var x1 = moment.tz(m, dateFormat, element);
           x1 = moment(x1);   // parsed as 4:30 local time
           listOfTimes.push(x1);
         });
       } else {
-        var x1 = m.tz(def).format(); // 2013-11-18T06:00:00+01:00
+
+        InitlistOfTimes.push(def);
+        var x1 = m.tz(def).format(dateFormat); // 2013-11-18T06:00:00+01:00
         x1 = moment(x1);   // parsed as 4:30 local time
         listOfTimes.push(x1);
-        var x2 = m.tz("America/Toronto").format(); // 2013-11-18T06:00:00+01:00
+        SaveLocal('WorldClock', def);
+
+        InitlistOfTimes.push("America/Toronto");        
+        var x2 = m.tz("America/Toronto").format(dateFormat); // 2013-11-18T06:00:00+01:00
         x2 = moment(x2);   // parsed as 4:30 local time
         listOfTimes.push(x2);
       }
