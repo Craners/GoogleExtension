@@ -11,7 +11,7 @@
       <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
       <span class="mdl-chip mdl-chip--contact" id="worldClock">
-        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white">T</span>
+        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" id="cityInitial">T</span>
         <span class="mdl-chip__text" id="worldClockTime">Contact Chip</span>
       </span>
       <!-- Navigation -->
@@ -45,6 +45,12 @@
             <input type="checkbox" id="list-switch-2" class="mdl-switch__input" checked />
           </label>
         </span>
+        <form action="#" id="WeatherAdd">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="addWeatherCity">
+            <label class="mdl-textfield__label" for="addWeatherCity" id="addWeatherTXT">Add City...</label>
+          </div>
+        </form>
       </div>
 
       <div id="nav-stock">
@@ -54,6 +60,12 @@
               <input type="checkbox" id="list-switch-3" class="mdl-switch__input" checked />
             </label>
           </span>
+          <form action="#" id="StockAdd">
+            <div class="mdl-textfield mdl-js-textfield">
+              <input class="mdl-textfield__input" type="text" id="addStock">
+              <label class="mdl-textfield__label" for="addStock" id="addStockTXT">Add Stock...</label>
+            </div>
+          </form>
         </div>
 
     </nav>
@@ -98,6 +110,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <script src="thirdParty/moment.js"></script>
 <script src="thirdParty/moment-timezone-with-data.js"></script>
+<script src="autoComplete.js"></script>
 <script src="worldClock.js"></script>
 <script src="weather.js"></script>
 <script src="snackBar.js"></script>

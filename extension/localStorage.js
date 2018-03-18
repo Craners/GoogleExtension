@@ -33,7 +33,6 @@ function GetLocal(section) {
 
       if (section in storeStr) { 
 
-        console.log('yes i have it');
         return storeStr[section];
       }
     }

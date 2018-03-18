@@ -1,41 +1,44 @@
 $(document).ready(function () {
 
-
   var listOfTimes = [];
-  var def = moment.tz.guess(); //guess where they are?
-  var m = moment();
-  m.format();
-  listOfTimes.push(m);
+  var InitlistOfTimes =[];
+  init();
 
-  if (typeof (Storage) !== "undefined") {
-    if (localStorage.getItem("data")) {
+  function init() {
 
-      let InitlistOfTimes = GetLocal('WorldClock');
-      InitlistOfTimes.forEach(element => {
+    var def = moment.tz.guess(); //guess where they are?
+    var m = moment();
+    m.format();
+    listOfTimes.push(m);
 
-        var x1 = m.tz(element).format(); // 2013-11-18T06:00:00+01:00
+    if (typeof (Storage) !== "undefined") {
+      if (localStorage.getItem("data")) {
+
+        InitlistOfTimes = GetLocal('WorldClock');
+        InitlistOfTimes.forEach(element => {
+
+          var x1 = m.tz(element).format(); // 2013-11-18T06:00:00+01:00
+          x1 = moment(x1);   // parsed as 4:30 local time
+          listOfTimes.push(x1);
+        });
+      } else {
+        var x1 = m.tz(def).format(); // 2013-11-18T06:00:00+01:00
         x1 = moment(x1);   // parsed as 4:30 local time
         listOfTimes.push(x1);
-      });
-      // var name = 'America/Toronto';
-      // var x1 = m.tz(name).format(); // 2013-11-18T06:00:00+01:00
-      // x1 = moment(x1);   // parsed as 4:30 local time
-      // listOfTimes.push(x1);
+        var x2 = m.tz("America/Toronto").format(); // 2013-11-18T06:00:00+01:00
+        x2 = moment(x2);   // parsed as 4:30 local time
+        listOfTimes.push(x2);
+      }
     } else {
-      var x1 = m.tz(def).format(); // 2013-11-18T06:00:00+01:00
-      x1 = moment(x1);   // parsed as 4:30 local time
-      listOfTimes.push(x1);
-      var x2 = m.tz("America/Toronto").format(); // 2013-11-18T06:00:00+01:00
-      x2 = moment(x2);   // parsed as 4:30 local time
-      listOfTimes.push(x2);
+      console.log('local storage not supported');
     }
-  } else {
-    console.log('local storage not supported');
-  }
 
-  $("#worldClockTime").html(x2._i);
-  $('#worldClockTime').attr("data-index", listOfTimes.indexOf(x2));
-  // console.log(x3);
+    let tempCity = listOfTimes[listOfTimes.length - 1];
+    let tempCityName = InitlistOfTimes[InitlistOfTimes.length - 1];
+    $("#worldClockTime").html(tempCity._i);
+    $('#worldClockTime').attr("data-index", listOfTimes.indexOf(tempCity));
+    $('#cityInitial').html(tempCityName.substring(tempCityName.indexOf("/") + 1,tempCityName.indexOf("/") + 4));
+  }
 
 
   function ShowWorldClock() {
@@ -51,13 +54,14 @@ $(document).ready(function () {
     }
     $("#worldClockTime").html(listOfTimes[rand]._i);
     $('#worldClockTime').attr("data-index", rand);
+    $('#cityInitial').html(InitlistOfTimes[rand-1].substring(InitlistOfTimes[rand-1].indexOf("/") + 1,InitlistOfTimes[rand-1].indexOf("/") + 4));
   }
 
   $("#worldClockTime").click(function () {
     ShowWorldClock();
   });
 
-  $("#addCity").autocomplete({
+  showAutoComplete("#addCity", {
     source: moment.tz.names(),
     minLength: 2,
     select: function (event, ui) {
@@ -66,6 +70,7 @@ $(document).ready(function () {
       //   "Nothing selected, input was " + this.value);
       ShowSnackBar("Added: " + ui.item.value);
       SaveLocal('WorldClock', ui.item.value);
+      init();
     }
   });
 });
