@@ -1,6 +1,3 @@
-var apiKey = "7YIT0H0H47ROMK81";
-var currentIndexList = -1;
-
 var listStocks = [];
 var symbols = [];
 
@@ -17,11 +14,11 @@ function getStockData(symbol, async, outputsize = "compact") {
         }
     }
 
-    $.ajax(settings).done(function (response) {        
+    $.ajax(settings).done(function (response) {
         var lastIndex = response[Object.keys(response).length - 1];
         addStock(symbol, lastIndex);
         return true;
-    }).fail(function(response) {
+    }).fail(function (response) {
         return false;
     });
 };
@@ -31,48 +28,59 @@ function addStock(symbol, res) {
     var currentChange = res["change"];
     var currentChangePerc = res["changePercent"];
 
-    var index = `${symbol}: ${currentValue} USD`;
+    var data = `${symbol}: ${currentValue} USD`;
+    if (listStocks[symbol]) { return; }
     var variance = `${currentChange} (${currentChangePerc}%)`;
 
     var isNeg = false;
     if (currentChange < 0) {
         isNeg = true;
     }
-   listStocks.push({ "index": index, "variance": variance, "isNeg": isNeg });
-   populateListHtml(listStocks);
+    listStocks[symbol] = { "data": data, "variance": variance, "isNeg": isNeg };
+    populateListHtml(listStocks);
 }
 
-function getProcessedSpans(item) {
-    var index = item["index"];
-    var variance = item["variance"];
+function getProcessedSpans(key) {
+    var value = listStocks[key];
+    var symbol = value["data"];
+    var variance = value["variance"];
 
-    var spanIndex = $(`<span>${index}&nbsp</span>`).css("color", "inherit");
+    var divContainer = $("<div id='containerStock'></div>");
+    var spanSymbol = $(`<span>${symbol}&nbsp</span>`).css("color", "inherit");
     var spanVariance = $(`<span>${variance}</span>`);
+    var spanClose = $(`<span>&nbspX</span>`).css("color", "black").bind("click", removeSymbol);
 
-    var isNeg = item["isNeg"];
+    var isNeg = value["isNeg"];
     if (isNeg) {
         spanVariance.css("color", "red");
     }
     else {
         spanVariance.css("color", "green");
     }
+    divContainer.append(spanSymbol).append(spanVariance).append(spanClose);
 
-    return { "spanIndex": spanIndex, "spanVariance": spanVariance };
+    return divContainer;
 }
 
+function removeSymbol(span) {
+    var data = span.currentTarget.parentElement.children[0].innerHTML;
+    var symbol = data.split(":")[0];
+    delete listStocks[symbol];
+    span.currentTarget.parentElement.parentElement.remove();
+}
 
 function populateListHtml(list) {
     $("#stock-list").empty();
-    var i;
-    for (i = 0; i < list.length; i++) {
-        var item = list[i];
-        var spans = getProcessedSpans(item);
-        var listItem = $("<li class='mdl-list__item'></li>").append(spans["spanIndex"]).append(spans["spanVariance"]);
+    var i = 0; //this needs to disappear
+    Object.keys(listStocks).forEach(function (key) {
+        var divContainer = getProcessedSpans(key);
+        var listItem = $("<li class='mdl-list__item'></li>").append(divContainer);
         if (i != 0) {
             listItem.hide();
         }
+        i++;
         $("#stock-list").append(listItem);
-    }
+    });
 }
 
 function bindClickListenerList() {
@@ -98,8 +106,7 @@ var autoComplete = {
     }
 };
 
-function getAllSymbols()
-{
+function getAllSymbols() {
     var settings = {
         "async": true,
         "url": "https://api.iextrading.com/1.0/ref-data/symbols",
@@ -110,8 +117,8 @@ function getAllSymbols()
         }
     }
 
-    $.ajax(settings).done(function (response) {      
-        Object.keys(response).forEach(function(key) {
+    $.ajax(settings).done(function (response) {
+        Object.keys(response).forEach(function (key) {
             var value = response[key];
             symbols.push(`${value.symbol}, ${value.name}`);
         });
