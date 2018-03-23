@@ -36,5 +36,8 @@ function GetLocal(section) {
         return storeStr[section];
       }
     }
+    else{
+      return '';
+    }
   }
 }
