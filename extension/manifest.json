@@ -15,7 +15,6 @@
   "permissions" : [
     "https://s3.amazonaws.com/",
     "geolocation",
-    "https://www.alphavantage.co/",
-    "http://d.yimg.com/"
+    "https://api.iextrading.com/"
   ]
 }

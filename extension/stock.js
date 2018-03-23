@@ -1,12 +1,11 @@
 var apiKey = "7YIT0H0H47ROMK81";
 var currentIndexList = -1;
-//var sizeList;
-var stockResponses = [];
+
 var listStocks = [];
-var symbols = {};
+var symbols = [];
 
 function getStockData(symbol, async, outputsize = "compact") {
-    var query = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=${outputsize}&apikey=${apiKey}&datatype=json`;
+    var query = `https://api.iextrading.com/1.0/stock/${symbol}/chart/`;
 
     var settings = {
         "async": async,
@@ -18,56 +17,29 @@ function getStockData(symbol, async, outputsize = "compact") {
         }
     }
 
-    $.ajax(settings).done(function (response) {
-        console.log(response);
-        if ("Error Message" in response || "Information" in response) {
-            return false;
-        }
-        var index = response["Meta Data"]["2. Symbol"];
-        stockResponses[index] = response;
+    $.ajax(settings).done(function (response) {        
+        var lastIndex = response[Object.keys(response).length - 1];
+        addStock(symbol, lastIndex);
         return true;
+    }).fail(function(response) {
+        return false;
     });
 };
 
-function addStock(symbol) {
-    var response = stockResponses[symbol];
-    if (response == null) { return; }
-    var data = response["Time Series (Daily)"];
+function addStock(symbol, res) {
+    var currentValue = res["close"];
+    var currentChange = res["change"];
+    var currentChangePerc = res["changePercent"];
 
-    var dataArr = Object.keys(data).map(function (key) { return data[key]; });
-    var newestVal = round2Decimals(dataArr[0]["4. close"]);
-    var yesterdayVal = dataArr[1]["4. close"];
-    var diff = getVariation(newestVal, yesterdayVal);
-    var perc = getPercentage(diff, yesterdayVal);
-    var index = `${symbol}: ${newestVal} USD`;
-    var variance = `${diff} (${perc}%)`;
+    var index = `${symbol}: ${currentValue} USD`;
+    var variance = `${currentChange} (${currentChangePerc}%)`;
 
     var isNeg = false;
-    if (diff < 0) {
+    if (currentChange < 0) {
         isNeg = true;
     }
-    listStocks.push({ "index": index, "variance": variance, "isNeg": isNeg });
-    populateListHtml(listStocks);
-   // bindClickListenerList();
-}
-
-
-function getVariation(newestVal, yesterdayVal) {
-    if (newestVal >= yesterdayVal) {
-        return round2Decimals(newestVal - yesterdayVal);
-    }
-    else {
-        return round2Decimals(yesterdayVal - newestVal) * (-1);
-    }
-}
-
-function getPercentage(variation, origNr) {
-    var perc = variation / origNr * 100;
-    return round2Decimals(perc);
-}
-
-function round2Decimals(number) {
-    return Math.round(number * 100) / 100;
+   listStocks.push({ "index": index, "variance": variance, "isNeg": isNeg });
+   populateListHtml(listStocks);
 }
 
 function getProcessedSpans(item) {
@@ -115,43 +87,40 @@ function bindClickListenerList() {
 
 }
 
-//Change ajax. See this: https://stackoverflow.com/questions/22233650/jquery-nested-ajax-calls-formatting
 var autoComplete = {
-    source: function (req, res) {
-        $.ajax({
-            url: "http://d.yimg.com/aq/autoc?region=US&lang=en-US",
-            data: { query: req.term },
-            success: function (data) {
-                var items = [];
-                data.ResultSet.Result.forEach(function (item) {
-                    if (getStockData(item.symbol), true) {
-                        items.push(`${item.symbol}, ${item.name}`);
-                    }
-                });
-                res(items);
-            },
-            select: function (event, ui) { }
-        });
-    },
+    source: symbols,
     minLength: 2,
     select: function (event, ui) {
         var split = ui.item.label.split(",");
         var symbol = split[0];
-        addStock(symbol);
+        getStockData(symbol, true);
         stockResponses = [];
     }
 };
 
+function getAllSymbols()
+{
+    var settings = {
+        "async": true,
+        "url": "https://api.iextrading.com/1.0/ref-data/symbols",
+        "method": "GET",
+        "headers": {
+            "Cache-Control": "no-cache",
+            "Postman-Token": "0cd86039-5e48-05d8-2e68-dcfc89b062f8"
+        }
+    }
+
+    $.ajax(settings).done(function (response) {      
+        Object.keys(response).forEach(function(key) {
+            var value = response[key];
+            symbols.push(`${value.symbol}, ${value.name}`);
+        });
+    });
+}
+
 $(document).ready(function () {
+    getAllSymbols();
     getStockData("MSFT", false);
-    addStock("MSFT");
-    // getStockData("FB");
-    // getStockData("AAPL");
-    // getStockData("GOOGL");
-    // getStockData("IXIC");
-    // getStockData("VIX");
-    // sizeList = listStocks.length;
-    // populateListHtml(listStocks);
     bindClickListenerList();
     showAutoComplete("#addStock", autoComplete);
 });
