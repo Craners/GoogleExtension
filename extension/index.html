@@ -6,22 +6,10 @@
 <div class="layout-transparent mdl-layout mdl-js-layout">
   <header class="mdl-layout__header mdl-layout__header--transparent">
     <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <!-- <span class="mdl-layout-title">Google Extension</span> -->
-      <!-- Add spacer, to align navigation to the right -->
       <div class="mdl-layout-spacer"></div>
-      <span class="mdl-chip mdl-chip--contact" id="worldClock">
-        <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" id="cityInitial">T</span>
-        <span class="mdl-chip__text" id="worldClockTime">Contact Chip</span>
-      </span>
-      <!-- Navigation -->
-      <!-- <nav class="mdl-navigation">
-           <a class="mdl-navigation__link" href="">Link</a>
-         </nav> -->
     </div>
   </header>
   <div class="mdl-layout__drawer">
-    <!-- <span class="mdl-layout-title">Title</span> -->
     <nav class="mdl-navigation">
       <div id="nav-clock">
         <div class="mdl-navigation__link switchBtn switchWidth" href="">World Clock</div>
@@ -66,8 +54,7 @@
   </div>
   <main class="mdl-layout__content">
     <div class="mdl-grid" id="back">
-      <div class="mdl-cell mdl-cell--12-col"></div>
-      <div id="weather" class="mdl-cell mdl-cell--4-col">
+      <div class="mdl-cell mdl-cell--4-col">
         <div id="weather-card" class="mdl-card">
           <div class="mdl-card__media">
             <img id="weather-image" width="20" height="20" border="0" alt="">
@@ -93,35 +80,42 @@
             </tr>
           </thead>
           <tbody id="stockTableBody">
-          
+
           </tbody>
         </table>
+        <div class="mdl-cell mdl-cell--4-col">
+          <span class="mdl-chip mdl-chip--contact" id="worldClock">
+            <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" id="cityInitial">T</span>
+            <span class="mdl-chip__text" id="worldClockTime">Contact Chip</span>
+          </span>
+          <ul id="stock-list" class='mdl-chip mdl-list'>
+          </ul>
+        </div>
       </div>
-    </div>
   </main>
-</div>
-<div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
-  <div class="mdl-snackbar__text"></div>
-  <button class="mdl-snackbar__action" type="button"></button>
-</div>
-<script src="clock.js"></script>
-<script src="thirdParty/jquery-3.3.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="thirdParty/jquery-ui.css">
-<script src="thirdParty/jquery-ui.js"></script>
-<script src="background.js"></script>
-<link rel="stylesheet" href="./thirdParty/mdl/material.min.css">
-<link rel="stylesheet" type="text/css" href="style.css">
-<script src="./thirdParty/mdl/material.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<script src="thirdParty/moment.js"></script>
-<script src="thirdParty/moment-timezone-with-data.js"></script>
-<script src="autoComplete.js"></script>
-<script src="worldClock.js"></script>
-<script src="weather.js"></script>
-<script src="snackBar.js"></script>
-<script src="localStorage.js"></script>
+  </div>
+  <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+  </div>
+  <script src="clock.js"></script>
+  <script src="thirdParty/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="thirdParty/jquery-ui.css">
+  <script src="thirdParty/jquery-ui.js"></script>
+  <script src="background.js"></script>
+  <link rel="stylesheet" href="./thirdParty/mdl/material.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="./thirdParty/mdl/material.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <script src="thirdParty/moment.js"></script>
+  <script src="thirdParty/moment-timezone-with-data.js"></script>
+  <script src="autoComplete.js"></script>
+  <script src="worldClock.js"></script>
+  <script src="weather.js"></script>
+  <script src="snackBar.js"></script>
+  <script src="localStorage.js"></script>
 
-<script src="switch.js"></script>
-<script src="stock.js"></script>
+  <script src="switch.js"></script>
+  <script src="stock.js"></script>
 
 </html>
