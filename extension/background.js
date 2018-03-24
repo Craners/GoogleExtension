@@ -17,7 +17,7 @@ if (GetLocal("BackGround")==="") {
   console.log(rand);
   
   // SaveLocal('BackGround', rand);
-  
+  $('.layout-transparent').css('background-image', 'url(' + '../background/a.jpg' + ')');
 }
 // $('.layout-transparent').css('background-image', 'url(' + x + ')');
 
