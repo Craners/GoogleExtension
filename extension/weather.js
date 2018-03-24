@@ -56,3 +56,4 @@ function getLocation()
 }
 
 getLocation();
+//showAutoCompleteTimeZones("#addWeatherCity");

@@ -1,12 +1,8 @@
-var apiKey = "7YIT0H0H47ROMK81";
-var currentIndexList = -1;
-var sizeList;
-var stockResponses = [];
-var listStocks = [];
-var symbols = [];
+var listStocks = {};
+var allSymbols = [];
 
 function getStockData(symbol, async, outputsize = "compact") {
-    var query = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&outputsize=${outputsize}&apikey=${apiKey}&datatype=json`;
+    var query = `https://api.iextrading.com/1.0/stock/${symbol}/chart/`;
 
     var settings = {
         "async": async,
@@ -19,153 +15,131 @@ function getStockData(symbol, async, outputsize = "compact") {
     }
 
     $.ajax(settings).done(function (response) {
-        // var index = response["Meta Data"]["2. Symbol"];
-        // var data = response["Time Series (Daily)"];
-
-        if (!stockResponses.includes(response)) {
-            stockResponses.push(response);
-        }
-        // var dataArr = Object.keys(data).map(function (key) { return data[key]; });
-        // var newestVal = round2Decimals(dataArr[0]["4. close"]);
-        // var yesterdayVal = dataArr[1]["4. close"];
-        // var diff = getVariation(newestVal, yesterdayVal);
-        // var perc = getPercentage(diff, yesterdayVal);
-        // var index = `${index}: ${newestVal} USD`;
-        // var variance = `${diff} (${perc}%)`;
-
-        // var isNeg = false;
-        // if (diff < 0) {
-        //     isNeg = true;
-        // }
-        // listStocks.push({ "index": index, "variance": variance, "isNeg": isNeg });
+        var lastIndex = response[Object.keys(response).length - 1];
+        addStock(symbol, lastIndex);
         return true;
-    });
-
-    $.ajax(settings).fail(function (response) {
+    }).fail(function (response) {
         return false;
     });
 };
 
-function addStock(response) {
-    var index = response["Meta Data"]["2. Symbol"];
-    var data = response["Time Series (Daily)"];
+function addStock(symbol, res) {
+    var currentValue = res["close"];
+    var currentChange = res["change"];
+    var currentChangePerc = res["changePercent"];
 
-    var dataArr = Object.keys(data).map(function (key) { return data[key]; });
-    var newestVal = round2Decimals(dataArr[0]["4. close"]);
-    var yesterdayVal = dataArr[1]["4. close"];
-    var diff = getVariation(newestVal, yesterdayVal);
-    var perc = getPercentage(diff, yesterdayVal);
-    var index = `${index}: ${newestVal} USD`;
-    var variance = `${diff} (${perc}%)`;
+    var data = `${symbol}`;
+    var currentValue = `${currentValue} USD`;
+
+    var variance = `${currentChange} (${currentChangePerc}%)`;
 
     var isNeg = false;
-    if (diff < 0) {
+    if (currentChange < 0) {
         isNeg = true;
     }
-    listStocks.push({ "index": index, "variance": variance, "isNeg": isNeg });
+    listStocks[symbol] = { "data": data, "value": currentValue, "variance": variance, "isNeg": isNeg };
+    populateListHtml(listStocks);
 }
 
+function getBodyStocks(key) {
+    var value = listStocks[key];
+    var symbol = value["data"];
+    var currentVal = value["value"];
+    var variance = value["variance"];
 
-function getVariation(newestVal, yesterdayVal) {
-    if (newestVal >= yesterdayVal) {
-        return round2Decimals(newestVal - yesterdayVal);
-    }
-    else {
-        return round2Decimals(yesterdayVal - newestVal) * (-1);
-    }
-}
+    var trContainer = $("<tr></tr>");
+    var tdSymbol = $(`<td class="mdl-data-table__cell--non-numeric">${symbol}</td>`).css("color", "inherit");
+    var tdValue = $(`<td>${currentVal}</td>`);
+    var tdVariance = $(`<td>${variance}</td>`);
+    var tdClose = $(`<td><i class="material-icons md-18">&#xE5CD;</i></td>`).css("color", "black").bind("click", removeSymbol);
 
-function getPercentage(variation, origNr) {
-    var perc = variation / origNr * 100;
-    return round2Decimals(perc);
-}
-
-function round2Decimals(number) {
-    return Math.round(number * 100) / 100;
-}
-
-function getProcessedSpans(item) {
-    var index = item["index"];
-    var variance = item["variance"];
-
-    var spanIndex = $(`<span>${index}&nbsp</span>`).css("color", "inherit");
-    var spanVariance = $(`<span>${variance}</span>`);
-
-    var isNeg = item["isNeg"];
+    var isNeg = value["isNeg"];
     if (isNeg) {
-        spanVariance.css("color", "red");
+        tdVariance.css("color", "red");
     }
     else {
-        spanVariance.css("color", "green");
+        tdVariance.css("color", "green");
     }
+    trContainer.append(tdSymbol).append(tdValue).append(tdVariance).append(tdClose);
 
-    return { "spanIndex": spanIndex, "spanVariance": spanVariance };
+    return trContainer;
 }
 
+function removeSymbol(row) {
+    var symbol = row.currentTarget.parentElement.children[0].innerHTML;
+    delete listStocks[symbol];
+    row.currentTarget.parentElement.remove();
+    RemoveFromLocal("stocks", symbol);
+    if (Object.keys(listStocks).length == 0) {
+        applyDefaultStock();
+    }
+}
 
 function populateListHtml(list) {
-    var i;
-    for (i = 0; i < list.length; i++) {
-        var item = list[i];
-        var spans = getProcessedSpans(item);
-        var listItem = $("<li class='mdl-list__item'></li>").append(spans["spanIndex"]).append(spans["spanVariance"]);
-        if (i != 0) {
-            listItem.hide();
-        }
-        $("#stock-list").append(listItem);
-    }
-}
-
-function bindClickListenerList() {
-    var stocksUl = $("#stock-list");
-    stocksUl.click(function () {
-        var children = $(this).children();
-        var i;
-        for (i = 1; i < children.length; i++) {
-            $(children[i]).toggle(500);
-        }
+    $("#stockTableBody").empty();
+    Object.keys(list).forEach(function (key) {
+        var trContainer = getBodyStocks(key);
+        $("#stockTableBody").append(trContainer);
     });
-
 }
 
 var autoComplete = {
-    source: function (req, res) {
-        $.ajax({
-            url: "http://d.yimg.com/aq/autoc?region=US&lang=en-US",
-            data: { query: req.term },
-            success: function (data) {
-                stockResponses = [];                
-                var items = [];
-                data.ResultSet.Result.forEach(function (item) {
-                    if (getStockData(item.symbol), true) {
-                        items.push(`${item.symbol}, ${item.name}`);
-                    }
-                });
-                res(items);
-            },
-            select: function (event, ui) {
-                console.log(stockResponses);
-                console.log(ui.item);
-            }
-        });
-    },
-    minLength: 2,
+    source: allSymbols,
+    minLength: 3,
     select: function (event, ui) {
-        console.log(ui.item);
+        var split = ui.item.label.split(",");
+        var symbol = split[0];
+        if (listStocks[symbol]) {
+            ShowSnackBar(`${symbol} already exists.`);
+            return;
+        }
+        SaveLocal("stocks", symbol);
+        ShowSnackBar(`You have added ${symbol} to the stocks.`);
+        getStockData(symbol, true);
+        stockResponses = [];
     }
 };
 
+function getAllSymbols() {
+    var settings = {
+        "async": true,
+        "url": "https://api.iextrading.com/1.0/ref-data/symbols",
+        "method": "GET",
+        "headers": {
+            "Cache-Control": "no-cache",
+            "Postman-Token": "0cd86039-5e48-05d8-2e68-dcfc89b062f8"
+        }
+    }
+
+    $.ajax(settings).done(function (response) {
+        Object.keys(response).forEach(function (key) {
+            var value = response[key];
+            allSymbols.push(`${value.symbol}, ${value.name}`);
+        });
+    });
+}
+
+function applyDefaultStock() {
+    var def = $(`<tr><th class="defaultStock" colspan="4">No stock</th></tr>`);
+    $("#stockTableBody").append(def);
+}
+
+function addStocksFromLocalStorage() {
+    var stocks = GetLocal("stocks");
+    if (stocks === '') { return; }
+    if (stocks && Object.keys(stocks).length != 0) {
+        Object.keys(stocks).forEach(function (key) {
+            var value = stocks[key];
+            getStockData(value, false);
+        });
+    }
+    else {
+        applyDefaultStock();
+    }
+}
+
 $(document).ready(function () {
-    getStockData("MSFT", false);
-    addStock(stockResponses[0]);
-    // getStockData("FB");
-    // getStockData("AAPL");
-    // getStockData("GOOGL");
-    // getStockData("IXIC");
-    // getStockData("VIX");
-    sizeList = listStocks.length;
-    populateListHtml(listStocks);
-    bindClickListenerList();
+    getAllSymbols();
+    addStocksFromLocalStorage();
     showAutoComplete("#addStock", autoComplete);
 });
-

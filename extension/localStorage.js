@@ -6,9 +6,9 @@ function SaveLocal(section, data) {
       var store = localStorage.getItem("data");
       var storeStr = JSON.parse(store);
 
-      if(!storeStr[section]){
+      if (!storeStr[section]) {
 
-        storeStr[section]=[];
+        storeStr[section] = [];
       }
       if (storeStr[section].indexOf(data) == -1) {
 
@@ -27,6 +27,30 @@ function SaveLocal(section, data) {
     console.log('local storage not supported');
   }
 }
+
+function RemoveFromLocal(section, data) {
+  if (typeof (Storage) !== "undefined") {
+    if (localStorage.getItem("data")) {
+
+      var store = localStorage.getItem("data");
+      var storeStr = JSON.parse(store);
+
+      if (!storeStr[section]) {
+        storeStr[section] = [];
+      }
+      var index = storeStr[section].indexOf(data);
+      if (index != -1) {        
+        storeStr[section].splice(index, 1);
+        storeStr = JSON.stringify(storeStr);
+        localStorage.setItem("data", storeStr);
+      }
+    }
+  } else {
+
+    console.log('local storage not supported');
+  }
+}
+
 function GetLocal(section) {
 
   if (typeof (Storage) !== "undefined") {
@@ -35,15 +59,15 @@ function GetLocal(section) {
       var store = localStorage.getItem("data");
       var storeStr = JSON.parse(store);
 
-      if (section in storeStr) { 
+      if (section in storeStr) {
 
         return storeStr[section];
-      }else{
+      } else {
 
         return '';
       }
     }
-    else{
+    else {
       return '';
     }
   }

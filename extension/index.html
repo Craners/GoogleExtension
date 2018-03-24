@@ -48,19 +48,19 @@
       </div>
 
       <div id="nav-stock">
-          <div class="mdl-navigation__link switchBtn switchWidth">Stocks</div>
-          <span class="mdl-list__item-secondary-action switchBtn">
-            <label id="checkStock" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-3">
-              <input type="checkbox" id="list-switch-3" class="mdl-switch__input" checked />
-            </label>
-          </span>
-          <form action="#" id="StockAdd">
-            <div class="mdl-textfield mdl-js-textfield">
-              <input class="mdl-textfield__input" type="text" id="addStock">
-              <label class="mdl-textfield__label" for="addStock" id="addStockTXT">Add Stock...</label>
-            </div>
-          </form>
-        </div>
+        <div class="mdl-navigation__link switchBtn switchWidth">Stocks</div>
+        <span class="mdl-list__item-secondary-action switchBtn">
+          <label id="checkStock" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-3">
+            <input type="checkbox" id="list-switch-3" class="mdl-switch__input" checked />
+          </label>
+        </span>
+        <form action="#" id="StockAdd">
+          <div class="mdl-textfield mdl-js-textfield">
+            <input class="mdl-textfield__input" type="text" id="addStock">
+            <label class="mdl-textfield__label" for="addStock" id="addStockTXT">Add Stock...</label>
+          </div>
+        </form>
+      </div>
 
     </nav>
   </div>
@@ -83,8 +83,19 @@
       </div>
       <div id="date_time" class="mdl-cell mdl-cell--4-col"></div>
       <div id="stock" class="mdl-cell mdl-cell--4-col">
-          <ul id="stock-list" class='mdl-chip mdl-list'>
-          </ul>
+        <table id="stockTable" class="mdl-data-table mdl-shadow--2dp">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Symbol</th>
+              <th>Value</th>
+              <th>Variation</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="stockTableBody">
+          
+          </tbody>
+        </table>
       </div>
     </div>
   </main>
