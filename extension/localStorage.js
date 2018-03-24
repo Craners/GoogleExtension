@@ -6,6 +6,10 @@ function SaveLocal(section, data) {
       var store = localStorage.getItem("data");
       var storeStr = JSON.parse(store);
 
+      if(!storeStr[section]){
+
+        storeStr[section]=[];
+      }
       if (storeStr[section].indexOf(data) == -1) {
 
         storeStr[section].push(data);
@@ -34,7 +38,13 @@ function GetLocal(section) {
       if (section in storeStr) { 
 
         return storeStr[section];
+      }else{
+
+        return '';
       }
+    }
+    else{
+      return '';
     }
   }
 }

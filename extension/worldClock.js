@@ -16,7 +16,7 @@ $(document).ready(function () {
     listOfTimes.push(m);
 
     if (typeof (Storage) !== "undefined") {
-      if (localStorage.getItem("data")) {
+      if (localStorage.getItem("data") && GetLocal('WorldClock')!=='') {
 
         InitlistOfTimes = GetLocal('WorldClock');
         InitlistOfTimes.forEach(element => {
