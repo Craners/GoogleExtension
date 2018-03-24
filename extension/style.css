@@ -106,4 +106,18 @@ span {
   font-size: inherit;
 }
 
+th, td
+{
+  vertical-align: middle !important;
+  text-align: center !important;
+  
+}
+.md-18
+{
+  font-size: 18px !important;
+}
 
+.defaultStock
+{
+  color: lightgray !important;
+}

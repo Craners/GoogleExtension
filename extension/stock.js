@@ -1,5 +1,5 @@
-var listStocks = [];
-var symbols = [];
+var listStocks = {};
+var allSymbols = [];
 
 function getStockData(symbol, async, outputsize = "compact") {
     var query = `https://api.iextrading.com/1.0/stock/${symbol}/chart/`;
@@ -28,7 +28,8 @@ function addStock(symbol, res) {
     var currentChange = res["change"];
     var currentChangePerc = res["changePercent"];
 
-    var data = `${symbol}: ${currentValue} USD`;
+    var data = `${symbol}`;
+    var currentValue = `${currentValue} USD`;
     if (listStocks[symbol]) { return; }
     var variance = `${currentChange} (${currentChangePerc}%)`;
 
@@ -36,68 +37,55 @@ function addStock(symbol, res) {
     if (currentChange < 0) {
         isNeg = true;
     }
-    listStocks[symbol] = { "data": data, "variance": variance, "isNeg": isNeg };
+    listStocks[symbol] = { "data": data, "value": currentValue, "variance": variance, "isNeg": isNeg };
     populateListHtml(listStocks);
 }
 
-function getProcessedSpans(key) {
+function getBodyStocks(key) {
     var value = listStocks[key];
     var symbol = value["data"];
+    var currentVal = value["value"];
     var variance = value["variance"];
 
-    var divContainer = $("<div id='containerStock'></div>");
-    var spanSymbol = $(`<span>${symbol}&nbsp</span>`).css("color", "inherit");
-    var spanVariance = $(`<span>${variance}</span>`);
-    var spanClose = $(`<span>&nbspX</span>`).css("color", "black").bind("click", removeSymbol);
+    var trContainer = $("<tr></tr>");
+    var tdSymbol = $(`<td class="mdl-data-table__cell--non-numeric">${symbol}</td>`).css("color", "inherit");
+    var tdValue = $(`<td>${currentVal}</td>`);
+    var tdVariance = $(`<td>${variance}</td>`);
+    var tdClose = $(`<td><i class="material-icons md-18">&#xE5CD;</i></td>`).css("color", "black").bind("click", removeSymbol);
 
     var isNeg = value["isNeg"];
     if (isNeg) {
-        spanVariance.css("color", "red");
+        tdVariance.css("color", "red");
     }
     else {
-        spanVariance.css("color", "green");
+        tdVariance.css("color", "green");
     }
-    divContainer.append(spanSymbol).append(spanVariance).append(spanClose);
+    trContainer.append(tdSymbol).append(tdValue).append(tdVariance).append(tdClose);
 
-    return divContainer;
+    return trContainer;
 }
 
-function removeSymbol(span) {
-    var data = span.currentTarget.parentElement.children[0].innerHTML;
-    var symbol = data.split(":")[0];
+function removeSymbol(row) {
+    var symbol = row.currentTarget.parentElement.children[0].innerHTML;
     delete listStocks[symbol];
-    span.currentTarget.parentElement.parentElement.remove();
+    row.currentTarget.parentElement.remove();
+    // localStorage.setItem("stocks", JSON.stringify(listStocks));
+    if (Object.keys(listStocks).length == 0) {
+        applyDefaultStock();
+    }
 }
 
 function populateListHtml(list) {
-    $("#stock-list").empty();
-    var i = 0; //this needs to disappear
-    Object.keys(listStocks).forEach(function (key) {
-        var divContainer = getProcessedSpans(key);
-        var listItem = $("<li class='mdl-list__item'></li>").append(divContainer);
-        if (i != 0) {
-            listItem.hide();
-        }
-        i++;
-        $("#stock-list").append(listItem);
+    $("#stockTableBody").empty();
+    Object.keys(list).forEach(function (key) {
+        var trContainer = getBodyStocks(key);
+        $("#stockTableBody").append(trContainer);
     });
-}
-
-function bindClickListenerList() {
-    var stocksUl = $("#stock-list");
-    stocksUl.click(function () {
-        var children = $(this).children();
-        var i;
-        for (i = 1; i < children.length; i++) {
-            $(children[i]).toggle(500);
-        }
-    });
-
 }
 
 var autoComplete = {
-    source: symbols,
-    minLength: 2,
+    source: allSymbols,
+    minLength: 3,
     select: function (event, ui) {
         var split = ui.item.label.split(",");
         var symbol = split[0];
@@ -120,15 +108,37 @@ function getAllSymbols() {
     $.ajax(settings).done(function (response) {
         Object.keys(response).forEach(function (key) {
             var value = response[key];
-            symbols.push(`${value.symbol}, ${value.name}`);
+            allSymbols.push(`${value.symbol}, ${value.name}`);
         });
     });
 }
 
+function applyDefaultStock() {
+    var def = $(`<tr><th class="defaultStock" colspan="4">No stock</th></tr>`);
+    $("#stockTableBody").append(def);
+}
+
+function addStocksFromLocalStorage() {
+    var stocks = JSON.parse(localStorage.getItem("stocks"));
+    if(stocks && Object.keys(stocks).length != 0)
+    {
+        Object.keys(stocks).forEach(function(key){
+            var value = stocks[key];
+            getStockData(value, false);
+        });
+    }
+    else
+    {
+        applyDefaultStock();
+    }
+}
+
 $(document).ready(function () {
     getAllSymbols();
-    getStockData("MSFT", false);
-    bindClickListenerList();
+    addStocksFromLocalStorage();
     showAutoComplete("#addStock", autoComplete);
 });
 
+$(window).on("unload", function(e) {
+    localStorage.setItem("stocks", JSON.stringify(Object.keys(listStocks)));
+});
