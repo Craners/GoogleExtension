@@ -16,8 +16,11 @@ if (GetLocal("BackGround")==="") {
   var rand = Math.floor((Math.random() * 24) + 1);
   console.log(rand);
   
-  // SaveLocal('BackGround', rand);
-  $('.layout-transparent').css('background-image', 'url(' + '../background/a.jpg' + ')');
+  SaveLocal('BackGround', rand);
+  $('.layout-transparent').css('background-image', 'url(' + `../background/${rand}.jpg` + ')');
+}else{
+
+  $('.layout-transparent').css('background-image', 'url(' + `../background/${1}.jpg` + ')');
 }
 // $('.layout-transparent').css('background-image', 'url(' + x + ')');
 
