@@ -1,3 +1,6 @@
+.mdl-layout__content{
+  overflow:hidden;
+}
 span {
   color: #cccccc;
   vertical-align: 50%;
@@ -106,6 +109,10 @@ span {
   font-size: inherit;
 }
 
+#cityInitial{
+
+  font-size: 10px;
+}
 th, td
 {
   vertical-align: middle !important;

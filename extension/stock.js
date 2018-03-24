@@ -30,7 +30,7 @@ function addStock(symbol, res) {
 
     var data = `${symbol}`;
     var currentValue = `${currentValue} USD`;
-    if (listStocks[symbol]) { return; }
+
     var variance = `${currentChange} (${currentChangePerc}%)`;
 
     var isNeg = false;
@@ -69,7 +69,7 @@ function removeSymbol(row) {
     var symbol = row.currentTarget.parentElement.children[0].innerHTML;
     delete listStocks[symbol];
     row.currentTarget.parentElement.remove();
-    // localStorage.setItem("stocks", JSON.stringify(listStocks));
+    RemoveFromLocal("stocks", symbol);
     if (Object.keys(listStocks).length == 0) {
         applyDefaultStock();
     }
@@ -89,6 +89,12 @@ var autoComplete = {
     select: function (event, ui) {
         var split = ui.item.label.split(",");
         var symbol = split[0];
+        if (listStocks[symbol]) {
+            ShowSnackBar(`${symbol} already exists.`);
+            return;
+        }
+        SaveLocal("stocks", symbol);
+        ShowSnackBar(`You have added ${symbol} to the stocks.`);
         getStockData(symbol, true);
         stockResponses = [];
     }
@@ -119,16 +125,15 @@ function applyDefaultStock() {
 }
 
 function addStocksFromLocalStorage() {
-    var stocks = JSON.parse(localStorage.getItem("stocks"));
-    if(stocks && Object.keys(stocks).length != 0)
-    {
-        Object.keys(stocks).forEach(function(key){
+    var stocks = GetLocal("stocks");
+    if (stocks === '') { return; }
+    if (stocks && Object.keys(stocks).length != 0) {
+        Object.keys(stocks).forEach(function (key) {
             var value = stocks[key];
             getStockData(value, false);
         });
     }
-    else
-    {
+    else {
         applyDefaultStock();
     }
 }
@@ -137,8 +142,4 @@ $(document).ready(function () {
     getAllSymbols();
     addStocksFromLocalStorage();
     showAutoComplete("#addStock", autoComplete);
-});
-
-$(window).on("unload", function(e) {
-    localStorage.setItem("stocks", JSON.stringify(Object.keys(listStocks)));
 });
