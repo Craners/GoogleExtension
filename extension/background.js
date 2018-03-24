@@ -1,3 +1,5 @@
+$(document).ready(function () {
+
 // var settings = {
 //   "async": true,
 //   "url": "https://s3.amazonaws.com/123rf-chrome/",
@@ -9,13 +11,15 @@
 // }
 
 // $.ajax(settings).done(function (response) {
-if (GetLocal("BackGround" ===)) {
+if (GetLocal("BackGround")==="") {
 
   var rand = Math.floor((Math.random() * 24) + 1);
-  SaveLocal('BackGround', rand);
+  console.log(rand);
+  
+  // SaveLocal('BackGround', rand);
   
 }
-$('.layout-transparent').css('background-image', 'url(' + x + ')');
+// $('.layout-transparent').css('background-image', 'url(' + x + ')');
 
 
   // var xml = response,
@@ -25,3 +29,4 @@ $('.layout-transparent').css('background-image', 'url(' + x + ')');
 //  $('#back').css('background-image', 'url(' + x + ')');
 // });
   // $('.layout-transparent').css('background-color', 'blue');
+});

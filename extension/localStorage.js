@@ -34,6 +34,9 @@ function GetLocal(section) {
       if (section in storeStr) { 
 
         return storeStr[section];
+      }else{
+
+        return '';
       }
     }
     else{
