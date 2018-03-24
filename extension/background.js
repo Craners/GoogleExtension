@@ -1,35 +1,38 @@
 $(document).ready(function () {
 
-// var settings = {
-//   "async": true,
-//   "url": "https://s3.amazonaws.com/123rf-chrome/",
-//   "method": "GET",
-//   "headers": {
-//     "Cache-Control": "no-cache",
-//     "Postman-Token": "0cd86039-5e48-05d8-2e68-dcfc89b062f8"
-//   }
-// }
+  if (GetLocal("BackGround") === "") {
 
-// $.ajax(settings).done(function (response) {
-if (GetLocal("BackGround")==="") {
+    var check = moment(moment(), 'YYYY/MM/DD');
+    var day = check.format('D');
+    var rand = Math.floor((Math.random() * 24) + 1);
 
-  var rand = Math.floor((Math.random() * 24) + 1);
-  console.log(rand);
-  
-  SaveLocal('BackGround', rand);
-  $('.layout-transparent').css('background-image', 'url(' + `../background/${rand}.jpg` + ')');
-}else{
+    var obj = {
 
-  $('.layout-transparent').css('background-image', 'url(' + `../background/${1}.jpg` + ')');
-}
-// $('.layout-transparent').css('background-image', 'url(' + x + ')');
+      "today": day,
+      "randomNumber": rand
+    }
+    SaveLocal('BackGround', obj);
+    $('.layout-transparent').css('background-image', 'url(' + `../background/${rand}.jpg` + ')');
+  } else {
 
+    var data = GetLocal("BackGround")[0];
 
-  // var xml = response,
-  // $xml = $( xml ),
-  // $title = $xml.find( "Key" ).eq(rand);
-  // var x = 'https://s3.amazonaws.com/123rf-chrome/'+ $title.text();
-//  $('#back').css('background-image', 'url(' + x + ')');
-// });
-  // $('.layout-transparent').css('background-color', 'blue');
+    var check = moment(moment(), 'YYYY/MM/DD');
+    var day = check.format('D');
+
+    if (data.today == day) {
+
+      console.log('its the same day!');
+    }
+    else {
+
+      var rand = Math.floor((Math.random() * 24) + 1);
+      var obj = {
+
+        "today": day,
+        "randomNumber": rand
+      }
+    }
+    $('.layout-transparent').css('background-image', 'url(' + `../background/${data.randomNumber}.jpg` + ')');
+  }
 });
