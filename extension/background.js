@@ -15,7 +15,9 @@ $(document).ready(function () {
     $('.layout-transparent').css('background-image', 'url(' + `../background/${rand}.jpg` + ')');
   } else {
 
-    var data = GetLocal("BackGround")[GetLocal("BackGround").length-1];
+    var data = GetLocal("BackGround");
+    var x = data.length-1;
+    data = data[x];
 
     var check = moment(moment(), 'YYYY/MM/DD');
     var day = check.format('D');
