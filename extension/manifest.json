@@ -15,6 +15,7 @@
   "permissions" : [
     "https://s3.amazonaws.com/",
     "geolocation",
-    "https://api.iextrading.com/"
+    "https://api.iextrading.com/",
+    "https://api.openweathermap.org"
   ]
 }

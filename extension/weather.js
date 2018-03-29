@@ -1,20 +1,20 @@
 var latitude = 0;
 var longitude = 0;
 
-function getWeather()
+//every 10 minutes
+//get static icons
+
+function getWeather(city)
 {
   var settings = {
     "async": true,
-    "url": `https://fcc-weather-api.glitch.me/api/current?lat=${latitude}&lon=${longitude}`,
-    "method": "GET",
-    "headers": {
-      "Cache-Control": "no-cache",
-      "Postman-Token": "0cd86039-5e48-05d8-2e68-dcfc89b062f8"
-    }
+    "crossDomain": true,
+    "url": `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=86c75ec64e0f4f15ec09923d141350f9`,
+    "method": "GET"
   }
 
   $.ajax(settings).done(function (response) {
-    var icon = response["weather"]["icon"];
+    var icon = response["weather"][0]["icon"];
     var location = response["name"];
     var country = response["sys"]["country"];
     var temperature = response["main"]["temp"];
@@ -31,6 +31,24 @@ function getWeather()
   });
 }
 
+function getCity()
+{
+  var settings = {
+    "async": false,
+    "crossDomain": true,
+    "url": `http://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&sensor=true`,
+    "method": "GET"
+  }
+
+  var city;
+  $.ajax(settings).done(function (response) {
+    var components = response["results"][0]["address_components"];
+    city = `${components[4]["short_name"]},${components[6]["short_name"]}`
+  });
+
+  return city;
+}
+
 function getLocation()
 {
   if(navigator.geolocation)
@@ -45,15 +63,16 @@ function getLocation()
   {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
-    getWeather();
+    var city = getCity();
+    getWeather(city);
   }
 
   function fail(error)
   {
+    console.log("coordinates could not be obtained.");
     return;
   }
 
 }
 
 getLocation();
-//showAutoCompleteTimeZones("#addWeatherCity");
