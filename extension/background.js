@@ -11,7 +11,7 @@ $(document).ready(function () {
       "today": day,
       "randomNumber": rand
     }
-    SaveLocal('BackGround', obj);
+    SaveOneOnly('BackGround', obj);
     $('.layout-transparent').css('background-image', 'url(' + `../background/${rand}.jpg` + ')');
   } else {
 
@@ -33,7 +33,7 @@ $(document).ready(function () {
       data.today = day;
       data.randomNumber = rand;
 
-      SaveLocal('BackGround', data);
+      SaveOneOnly('BackGround', data);
       $('.layout-transparent').css('background-image', 'url(' + `../background/${data.randomNumber}.jpg` + ')');
     }
   }
