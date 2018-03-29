@@ -15,7 +15,7 @@ $(document).ready(function () {
     $('.layout-transparent').css('background-image', 'url(' + `../background/${rand}.jpg` + ')');
   } else {
 
-    var data = GetLocal("BackGround")[0];
+    var data = GetLocal("BackGround")[GetLocal("BackGround").length-1];
 
     var check = moment(moment(), 'YYYY/MM/DD');
     var day = check.format('D');
@@ -23,16 +23,16 @@ $(document).ready(function () {
     if (data.today == day) {
 
       console.log('its the same day!');
+      $('.layout-transparent').css('background-image', 'url(' + `../background/${data.randomNumber}.jpg` + ')');
     }
     else {
 
-      var rand = Math.floor((Math.random() * 24) + 1);
-      var obj = {
+      var rand = Math.floor((Math.random() * 23) + 1);
+      data.today = day;
+      data.randomNumber = rand;
 
-        "today": day,
-        "randomNumber": rand
-      }
+      SaveLocal('BackGround', data);
+      $('.layout-transparent').css('background-image', 'url(' + `../background/${data.randomNumber}.jpg` + ')');
     }
-    $('.layout-transparent').css('background-image', 'url(' + `../background/${data.randomNumber}.jpg` + ')');
   }
 });
