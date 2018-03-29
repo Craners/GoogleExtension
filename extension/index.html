@@ -69,53 +69,56 @@
         </div>
       </div>
       <div id="date_time" class="mdl-cell mdl-cell--4-col"></div>
-      <div id="stock" class="mdl-cell mdl-cell--4-col">
-        <table id="stockTable" class="mdl-data-table mdl-shadow--2dp">
-          <thead>
-            <tr>
-              <th class="mdl-data-table__cell--non-numeric">Symbol</th>
-              <th>Value</th>
-              <th>Variation</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="stockTableBody">
+      <div class="mdl-cell mdl-cell--4-col">
+        <span class="mdl-chip mdl-chip--contact" id="worldClock">
+          <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" id="cityInitial">T</span>
+          <span class="mdl-chip__text" id="worldClockTime">Contact Chip</span>
+        </span>
+        <ul id="stock-list" class='mdl-chip mdl-list'>
+        </ul>
 
-          </tbody>
-        </table>
-        <div class="mdl-cell mdl-cell--4-col">
-          <span class="mdl-chip mdl-chip--contact" id="worldClock">
-            <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" id="cityInitial">T</span>
-            <span class="mdl-chip__text" id="worldClockTime">Contact Chip</span>
-          </span>
-          <ul id="stock-list" class='mdl-chip mdl-list'>
-          </ul>
-        </div>
+        <div id="stock">
+            <table id="stockTable" class="mdl-data-table mdl-shadow--2dp">
+              <thead>
+                <tr>
+                  <th class="mdl-data-table__cell--non-numeric">Symbol</th>
+                  <th>Value</th>
+                  <th>Variation</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="stockTableBody">
+    
+              </tbody>
+            </table>
+          </div>
+
       </div>
+    </div>
   </main>
-  </div>
-  <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
-    <div class="mdl-snackbar__text"></div>
-    <button class="mdl-snackbar__action" type="button"></button>
-  </div>
-  <script src="clock.js"></script>
-  <script src="thirdParty/jquery-3.3.1.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="thirdParty/jquery-ui.css">
-  <script src="thirdParty/jquery-ui.js"></script>
-  <script src="background.js"></script>
-  <link rel="stylesheet" href="./thirdParty/mdl/material.min.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <script src="./thirdParty/mdl/material.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <script src="thirdParty/moment.js"></script>
-  <script src="thirdParty/moment-timezone-with-data.js"></script>
-  <script src="autoComplete.js"></script>
-  <script src="worldClock.js"></script>
-  <script src="weather.js"></script>
-  <script src="snackBar.js"></script>
-  <script src="localStorage.js"></script>
+</div>
+<div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+  <div class="mdl-snackbar__text"></div>
+  <button class="mdl-snackbar__action" type="button"></button>
+</div>
+<script src="clock.js"></script>
+<script src="thirdParty/jquery-3.3.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="thirdParty/jquery-ui.css">
+<script src="thirdParty/jquery-ui.js"></script>
+<script src="background.js"></script>
+<link rel="stylesheet" href="./thirdParty/mdl/material.min.css">
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="./thirdParty/mdl/material.min.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<script src="thirdParty/moment.js"></script>
+<script src="thirdParty/moment-timezone-with-data.js"></script>
+<script src="autoComplete.js"></script>
+<script src="worldClock.js"></script>
+<script src="weather.js"></script>
+<script src="snackBar.js"></script>
+<script src="localStorage.js"></script>
 
-  <script src="switch.js"></script>
-  <script src="stock.js"></script>
+<script src="switch.js"></script>
+<script src="stock.js"></script>
 
 </html>
