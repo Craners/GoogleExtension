@@ -16,17 +16,17 @@ function setWeatherInView(weatherData) {
   $("#weather-tempMax").html(weatherData["TemperatureMax"]);
 }
 
-function getWeather(city) {
+function getWeather() {
   var settings = {
-    "async": false,
+    "async": true,
     "crossDomain": true,
-    "url": `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=86c75ec64e0f4f15ec09923d141350f9`,
+    "url": `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&APPID=86c75ec64e0f4f15ec09923d141350f9`,
     "method": "GET"
   }
 
   $.ajax(settings).done(function (response) {
     var icon = response["weather"][0]["id"];
-    var description =  response["weather"][0]["description"];
+    var description = response["weather"][0]["description"];
     var location = response["name"];
     var country = response["sys"]["country"];
     var temperature = response["main"]["temp"];
@@ -54,7 +54,7 @@ function getWeather(city) {
 
 function getCity() {
   var settings = {
-    "async": false,
+    "async": true,
     "crossDomain": true,
     "url": `http://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&sensor=true`,
     "method": "GET"
@@ -62,11 +62,14 @@ function getCity() {
 
   var city;
   $.ajax(settings).done(function (response) {
-    var components = response["results"][0]["address_components"];
-    city = `${components[4]["short_name"]},${components[6]["short_name"]}`
+    var responseData = response["results"][0];
+    if (responseData === undefined) { return; }
+    else {
+      var components = responseData["address_components"];
+      city = `${components[4]["short_name"]},${components[6]["short_name"]}`
+      $("#weather-location").html(city);
+    }
   });
-
-  return city;
 }
 
 function getLocation() {
@@ -80,8 +83,8 @@ function getLocation() {
   function success(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
-    var city = getCity();
-    getWeather(city);
+    getWeather();
+    getCity();
   }
 
   function fail(error) {
