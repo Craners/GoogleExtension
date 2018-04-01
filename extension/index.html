@@ -55,7 +55,31 @@
   <main class="mdl-layout__content">
     <div class="mdl-grid" id="back">
       <div class="mdl-cell mdl-cell--4-col">
-        <div id="weather-card" class="mdl-card">
+      </div>
+      <div id="date_time" class="mdl-cell mdl-cell--4-col"></div>
+      <div class="mdl-cell mdl-cell--4-col" id="noflex">
+
+        <table class="mdl-data-table mdl-shadow--2dp marg noselect" id="clockTable">
+          <tbody>
+          </tbody>
+        </table>
+
+        <div id="stock" class="marg">
+          <table id="stockTable" class="mdl-data-table mdl-shadow--2dp">
+            <thead>
+              <tr>
+                <th class="mdl-data-table__cell--non-numeric">Symbol</th>
+                <th>Value</th>
+                <th>Variation</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="stockTableBody">
+            </tbody>
+          </table>
+        </div>
+
+        <div id="weather-card" class="mdl-card marg">
           <div class="mdl-card__media">
             <img id="weather-image" width="20" height="20" border="0" alt="">
             <div id="weather-location"></div>
@@ -67,31 +91,6 @@
             <div id="weather-tempMax"></div>
           </div>
         </div>
-      </div>
-      <div id="date_time" class="mdl-cell mdl-cell--4-col"></div>
-      <div class="mdl-cell mdl-cell--4-col">
-        <span class="mdl-chip mdl-chip--contact" id="worldClock">
-          <span class="mdl-chip__contact mdl-color--teal mdl-color-text--white" id="cityInitial">T</span>
-          <span class="mdl-chip__text" id="worldClockTime">Contact Chip</span>
-        </span>
-        <ul id="stock-list" class='mdl-chip mdl-list'>
-        </ul>
-
-        <div id="stock">
-            <table id="stockTable" class="mdl-data-table mdl-shadow--2dp">
-              <thead>
-                <tr>
-                  <th class="mdl-data-table__cell--non-numeric">Symbol</th>
-                  <th>Value</th>
-                  <th>Variation</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody id="stockTableBody">
-    
-              </tbody>
-            </table>
-          </div>
 
       </div>
     </div>
