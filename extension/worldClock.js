@@ -47,6 +47,7 @@ $(document).ready(function () {
     let tempCityName = InitlistOfTimes[InitlistOfTimes.length - 1];
 
     var table = document.getElementById("clockTable");
+    $('#rowClock').remove();
     var row = table.insertRow(0);
     row.id = "rowClock";
     $('#rowClock').attr("data-index", listOfTimes.indexOf(tempCity));
