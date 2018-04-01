@@ -17,10 +17,21 @@ span {
   background-repeat: no-repeat;
 }
 
-#date_time{
+.date_time{
   font-size: 30px;
   font-weight: lighter;
   color: white;
+  text-align: center;
+}
+
+.hours{
+
+  margin-top: 75%;
+  font-size: 600%;
+}
+.date{
+
+  margin-top: 17%;
 }
 
 .layout-transparent {
