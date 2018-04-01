@@ -1,15 +1,14 @@
 var latitude = 0;
 var longitude = 0;
 
-//get static icons
 function createExpirationDate() {
   var newDateObj = moment(new Date()).add(60, 'm').toDate();
   return newDateObj;
 }
 
 function setWeatherInView(weatherData) {
- // $("#weather-image").css("src", weatherData["Icon"]);
   $("#weather-image").addClass(`wi-owm-${weatherData["Icon"]}`);
+  $("#weather-description").html(weatherData["Description"]);
   $("#weather-location").html(weatherData["Location"]);
   $("#weather-humidity").html(weatherData["Humidity"]);
   $("#weather-temp").html(weatherData["Temperature"]);
@@ -27,6 +26,7 @@ function getWeather(city) {
 
   $.ajax(settings).done(function (response) {
     var icon = response["weather"][0]["id"];
+    var description =  response["weather"][0]["description"];
     var location = response["name"];
     var country = response["sys"]["country"];
     var temperature = response["main"]["temp"];
@@ -37,6 +37,7 @@ function getWeather(city) {
     var expirationDate = createExpirationDate();
     var weatherData = {};
     weatherData["Icon"] = icon;
+    weatherData["Description"] = description;
     weatherData["Location"] = `${location}, ${country}`;
     weatherData["Humidity"] = `H: ${humidity}%`;
     weatherData["Temperature"] = `Temperature: ${Math.ceil(temperature)} &deg;C`;
