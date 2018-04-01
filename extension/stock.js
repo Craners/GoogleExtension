@@ -126,7 +126,6 @@ function applyDefaultStock() {
 
 function addStocksFromLocalStorage() {
     var stocks = GetLocal("stocks");
- //   if (stocks === '') { return; }
     if (stocks !== '' && Object.keys(stocks).length != 0) {
         Object.keys(stocks).forEach(function (key) {
             var value = stocks[key];

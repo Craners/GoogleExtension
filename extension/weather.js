@@ -1,20 +1,32 @@
 var latitude = 0;
 var longitude = 0;
 
-function getWeather()
-{
+function createExpirationDate() {
+  var newDateObj = moment(new Date()).add(60, 'm').toDate();
+  return newDateObj;
+}
+
+function setWeatherInView(weatherData) {
+  $("#weather-image").addClass(`wi-owm-${weatherData["Icon"]}`);
+  $("#weather-description").html(weatherData["Description"]);
+  $("#weather-location").html(weatherData["Location"]);
+  $("#weather-humidity").html(weatherData["Humidity"]);
+  $("#weather-temp").html(weatherData["Temperature"]);
+  $("#weather-tempMin").html(weatherData["TemperatureMin"]);
+  $("#weather-tempMax").html(weatherData["TemperatureMax"]);
+}
+
+function getWeather(city) {
   var settings = {
-    "async": true,
-    "url": `https://fcc-weather-api.glitch.me/api/current?lat=${latitude}&lon=${longitude}`,
-    "method": "GET",
-    "headers": {
-      "Cache-Control": "no-cache",
-      "Postman-Token": "0cd86039-5e48-05d8-2e68-dcfc89b062f8"
-    }
+    "async": false,
+    "crossDomain": true,
+    "url": `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=86c75ec64e0f4f15ec09923d141350f9`,
+    "method": "GET"
   }
 
   $.ajax(settings).done(function (response) {
-    var icon = response["weather"]["icon"];
+    var icon = response["weather"][0]["id"];
+    var description =  response["weather"][0]["description"];
     var location = response["name"];
     var country = response["sys"]["country"];
     var temperature = response["main"]["temp"];
@@ -22,38 +34,77 @@ function getWeather()
     var tempMin = response["main"]["temp_min"];
     var tempMax = response["main"]["temp_max"];
 
-    $("#weather-image").css("src", icon);
-    $("#weather-location").html(`${location}, ${country}`);
-    $("#weather-humidity").html(`H: ${humidity}%`);
-    $("#weather-temp").html(`Temperature: ${Math.ceil(temperature)} &deg;C`);
-    $("#weather-tempMin").html(`Min: ${tempMin} &deg;C`);
-    $("#weather-tempMax").html(`Max: ${tempMax} &deg;C`);
+    var expirationDate = createExpirationDate();
+    var weatherData = {};
+    weatherData["Icon"] = icon;
+    weatherData["Description"] = description;
+    weatherData["Location"] = `${location}, ${country}`;
+    weatherData["Humidity"] = `H: ${humidity}%`;
+    weatherData["Temperature"] = `Temperature: ${Math.ceil(temperature)} &deg;C`;
+    weatherData["TemperatureMin"] = `Min: ${tempMin} &deg;C`;
+    weatherData["TemperatureMax"] = `Max: ${tempMax} &deg;C`;
+    var weatherObj = {};
+    weatherObj["ExpirationDate"] = expirationDate;
+    weatherObj["WeatherData"] = weatherData;
+    SaveOneOnly("weather", weatherObj);
+    setWeatherInView(weatherData);
+
   });
 }
 
-function getLocation()
-{
-  if(navigator.geolocation)
-  {
+function getCity() {
+  var settings = {
+    "async": false,
+    "crossDomain": true,
+    "url": `http://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&sensor=true`,
+    "method": "GET"
+  }
+
+  var city;
+  $.ajax(settings).done(function (response) {
+    var components = response["results"][0]["address_components"];
+    city = `${components[4]["short_name"]},${components[6]["short_name"]}`
+  });
+
+  return city;
+}
+
+function getLocation() {
+  if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, fail);
   }
   else {
     return;
   }
 
-  function success(position)
-  {
+  function success(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
-    getWeather();
+    var city = getCity();
+    getWeather(city);
   }
 
-  function fail(error)
-  {
+  function fail(error) {
+    console.log("coordinates could not be obtained.");
     return;
   }
-
 }
 
-getLocation();
-//showAutoCompleteTimeZones("#addWeatherCity");
+$(document).ready(function () {
+  var weatherObj = GetLocal("weather");
+  if (weatherObj === '') {
+    getLocation();
+  }
+  else {
+    var momentDate = moment(weatherObj[0]["ExpirationDate"]).toDate();
+    var currentDate = moment(new Date()).toDate();
+    if (currentDate >= momentDate) {
+      getLocation();
+    }
+    else {
+      var weatherData = weatherObj[0]["WeatherData"];
+      setWeatherInView(weatherData);
+    }
+  }
+});
+
