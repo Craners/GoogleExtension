@@ -11,6 +11,16 @@
   </header>
   <div class="mdl-layout__drawer">
     <nav class="mdl-navigation">
+
+      <div id="nav-weather">
+        <div class="mdl-navigation__link switchBtn switchWidth">Weather</div>
+        <span class="mdl-list__item-secondary-action switchBtn">
+          <label id="checkWeather" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-2">
+            <input type="checkbox" id="list-switch-2" class="mdl-switch__input" checked />
+          </label>
+        </span>
+      </div>
+
       <div id="nav-clock">
         <div class="mdl-navigation__link switchBtn switchWidth" href="">World Clock</div>
         <span class="mdl-list__item-secondary-action switchBtn">
@@ -24,15 +34,6 @@
             <label class="mdl-textfield__label" for="sample1" id="addCityTXT">Add City...</label>
           </div>
         </form>
-      </div>
-
-      <div id="nav-weather">
-        <div class="mdl-navigation__link switchBtn switchWidth">Weather</div>
-        <span class="mdl-list__item-secondary-action switchBtn">
-          <label id="checkWeather" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-2">
-            <input type="checkbox" id="list-switch-2" class="mdl-switch__input" checked />
-          </label>
-        </span>
       </div>
 
       <div id="nav-stock">
@@ -53,13 +54,21 @@
 
     </nav>
   </div>
+  <div class="mdl-layout__drawer-right">
+    <header class="mdl-layout-title">News
+      <button id="buttonRss" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+        <i class="material-icons">add</i>
+      </button>
+    </header>
+
+  </div>
   <main class="mdl-layout__content">
+    <div class="material-icons mdl-badge noselect" id="notif">keyboard_arrow_left</div>
     <div class="mdl-grid" id="back">
       <div class="mdl-cell mdl-cell--4-col">
       </div>
       <div id="date_time" class="mdl-cell mdl-cell--4-col"></div>
       <div class="mdl-cell mdl-cell--4-col" id="noflex">
-
         <table class="mdl-data-table mdl-shadow--2dp marg noselect" id="clockTable">
           <tbody>
           </tbody>
@@ -97,6 +106,7 @@
       </div>
     </div>
   </main>
+  <div class="mdl-layout__obfuscator-right"></div>
 </div>
 <div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
   <div class="mdl-snackbar__text"></div>
@@ -111,6 +121,7 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="./thirdParty/mdl/material.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
+<link rel="stylesheet" type="text/css" href="css/drawer.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <script src="thirdParty/moment.js"></script>
 <script src="thirdParty/moment-timezone-with-data.js"></script>
@@ -120,6 +131,7 @@
 <script src="snackBar.js"></script>
 <script src="localStorage.js"></script>
 
+<script src="news.js"></script>
 <script src="switch.js"></script>
 <script src="stock.js"></script>
 

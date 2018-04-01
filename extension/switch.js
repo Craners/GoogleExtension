@@ -8,6 +8,6 @@ function switchVisibility(switchId, elementId) {
 
 $(document).ready(function () {
     switchVisibility("checkWeather", "weather-card");
-    switchVisibility("checkClock", "worldClock");
+    switchVisibility("checkClock", "clockTable");
     switchVisibility("checkStock", "stock");
 });
