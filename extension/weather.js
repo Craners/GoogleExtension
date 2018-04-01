@@ -1,20 +1,32 @@
 var latitude = 0;
 var longitude = 0;
 
-//every 10 minutes
 //get static icons
+function createExpirationDate() {
+  var newDateObj = moment(new Date()).add(60, 'm').toDate();
+  return newDateObj;
+}
 
-function getWeather(city)
-{
+function setWeatherInView(weatherData) {
+ // $("#weather-image").css("src", weatherData["Icon"]);
+  $("#weather-image").addClass(`wi-owm-${weatherData["Icon"]}`);
+  $("#weather-location").html(weatherData["Location"]);
+  $("#weather-humidity").html(weatherData["Humidity"]);
+  $("#weather-temp").html(weatherData["Temperature"]);
+  $("#weather-tempMin").html(weatherData["TemperatureMin"]);
+  $("#weather-tempMax").html(weatherData["TemperatureMax"]);
+}
+
+function getWeather(city) {
   var settings = {
-    "async": true,
+    "async": false,
     "crossDomain": true,
     "url": `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&APPID=86c75ec64e0f4f15ec09923d141350f9`,
     "method": "GET"
   }
 
   $.ajax(settings).done(function (response) {
-    var icon = response["weather"][0]["icon"];
+    var icon = response["weather"][0]["id"];
     var location = response["name"];
     var country = response["sys"]["country"];
     var temperature = response["main"]["temp"];
@@ -22,17 +34,24 @@ function getWeather(city)
     var tempMin = response["main"]["temp_min"];
     var tempMax = response["main"]["temp_max"];
 
-    $("#weather-image").css("src", icon);
-    $("#weather-location").html(`${location}, ${country}`);
-    $("#weather-humidity").html(`H: ${humidity}%`);
-    $("#weather-temp").html(`Temperature: ${Math.ceil(temperature)} &deg;C`);
-    $("#weather-tempMin").html(`Min: ${tempMin} &deg;C`);
-    $("#weather-tempMax").html(`Max: ${tempMax} &deg;C`);
+    var expirationDate = createExpirationDate();
+    var weatherData = {};
+    weatherData["Icon"] = icon;
+    weatherData["Location"] = `${location}, ${country}`;
+    weatherData["Humidity"] = `H: ${humidity}%`;
+    weatherData["Temperature"] = `Temperature: ${Math.ceil(temperature)} &deg;C`;
+    weatherData["TemperatureMin"] = `Min: ${tempMin} &deg;C`;
+    weatherData["TemperatureMax"] = `Max: ${tempMax} &deg;C`;
+    var weatherObj = {};
+    weatherObj["ExpirationDate"] = expirationDate;
+    weatherObj["WeatherData"] = weatherData;
+    SaveOneOnly("weather", weatherObj);
+    setWeatherInView(weatherData);
+
   });
 }
 
-function getCity()
-{
+function getCity() {
   var settings = {
     "async": false,
     "crossDomain": true,
@@ -49,30 +68,42 @@ function getCity()
   return city;
 }
 
-function getLocation()
-{
-  if(navigator.geolocation)
-  {
+function getLocation() {
+  if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(success, fail);
   }
   else {
     return;
   }
 
-  function success(position)
-  {
+  function success(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
     var city = getCity();
     getWeather(city);
   }
 
-  function fail(error)
-  {
+  function fail(error) {
     console.log("coordinates could not be obtained.");
     return;
   }
-
 }
 
-getLocation();
+$(document).ready(function () {
+  var weatherObj = GetLocal("weather");
+  if (weatherObj === '') {
+    getLocation();
+  }
+  else {
+    var momentDate = moment(weatherObj[0]["ExpirationDate"]).toDate();
+    var currentDate = moment(new Date()).toDate();
+    if (currentDate >= momentDate) {
+      getLocation();
+    }
+    else {
+      var weatherData = weatherObj[0]["WeatherData"];
+      setWeatherInView(weatherData);
+    }
+  }
+});
+
