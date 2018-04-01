@@ -101,21 +101,28 @@ var autoComplete = {
 };
 
 function getAllSymbols() {
-    var settings = {
+    $.ajax({
         "async": true,
         "url": "https://api.iextrading.com/1.0/ref-data/symbols",
         "method": "GET",
         "headers": {
             "Cache-Control": "no-cache",
             "Postman-Token": "0cd86039-5e48-05d8-2e68-dcfc89b062f8"
+        },
+        complete: function () {
+            $("#stockSpinner").hide();
+        },
+        success: function (response, status, xhr) {
+            Object.keys(response).forEach(function (key) {
+                var value = response[key];
+                allSymbols.push(`${value.symbol}, ${value.name}`);
+            });
+            $("#stockSpinner").hide();
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) {
+            $("#stockSpinner").hide();
+            alert("Excpetion " + errorThrown + XMLHttpRequest);
         }
-    }
-
-    $.ajax(settings).done(function (response) {
-        Object.keys(response).forEach(function (key) {
-            var value = response[key];
-            allSymbols.push(`${value.symbol}, ${value.name}`);
-        });
     });
 }
 
@@ -137,8 +144,15 @@ function addStocksFromLocalStorage() {
     }
 }
 
+$("#addStock").click(function () {
+    if (allSymbols.length == 0) {
+        $("#stockSpinner").show();
+        getAllSymbols();
+    }
+});
+
 $(document).ready(function () {
-    getAllSymbols();
+    $("#stockSpinner").hide();
     addStocksFromLocalStorage();
     showAutoComplete("#addStock", autoComplete);
 });
