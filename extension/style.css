@@ -18,20 +18,26 @@ span {
 }
 
 .date_time{
-  font-size: 30px;
-  font-weight: lighter;
+  text-shadow: 2px 2px 4p rgba(0, 0, 0, 0.548);
   color: white;
-  text-align: center;
 }
 
 .hours{
 
-  margin-top: 75%;
-  font-size: 600%;
+  position: relative;
+  top: 40%;
+  transform: translateY(-40%);  
+  font-size: 800%; 
+  text-align: center;
 }
 .date{
 
-  margin-top: 17%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);    
+  align-items: center; 
+  font-size: 300%; 
+  text-align: center;
 }
 
 .layout-transparent {
@@ -151,7 +157,7 @@ th, td
 
 #clockTable{
 
-  width: 74%;
+  width: 62%;
 }
 
 .noselect {
@@ -170,4 +176,9 @@ i{
 i:hover{
 
   color: #d35400;
+}
+
+#weather-card{
+
+  width: 20%;
 }
