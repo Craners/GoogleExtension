@@ -6,9 +6,15 @@ function createExpirationDate() {
   return newDateObj;
 }
 
+function toTitleCase(str) {
+  return str.replace(/(?:^|\s)\w/g, function(match) {
+      return match.toUpperCase();
+  });
+}
+
 function setWeatherInView(weatherData) {
   $("#weather-image").addClass(`wi-owm-${weatherData["Icon"]}`);
-  $("#weather-description").html(weatherData["Description"]);
+  $("#weather-description").html(toTitleCase(weatherData["Description"]));
   $("#weather-location").html(weatherData["Location"]);
   $("#weather-humidity").html(weatherData["Humidity"]);
   $("#weather-temp").html(weatherData["Temperature"]);
