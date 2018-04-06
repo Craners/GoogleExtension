@@ -17,10 +17,27 @@ span {
   background-repeat: no-repeat;
 }
 
-#date_time{
-  font-size: 30px;
-  font-weight: lighter;
+.date_time{
+  text-shadow: 2px 2px 4p rgba(0, 0, 0, 0.548);
   color: white;
+}
+
+.hours{
+
+  position: relative;
+  top: 40%;
+  transform: translateY(-40%);  
+  font-size: 800%; 
+  text-align: center;
+}
+.date{
+
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);    
+  align-items: center; 
+  font-size: 300%; 
+  text-align: center;
 }
 
 .layout-transparent {
@@ -71,7 +88,8 @@ span {
   width: auto;
   height: auto;
   background: white;
-  position: absolute;
+  /* position: absolute; */
+  position: relative;
   min-height: auto;
 }
 
@@ -140,7 +158,7 @@ th, td
 
 #clockTable{
 
-  width: 74%;
+  width: 60%;
 }
 
 .noselect {
@@ -160,3 +178,27 @@ i:hover{
 
   color: #d35400;
 }
+
+#weather-card{
+
+  width: 60%;
+}
+
+.glass{
+
+  background: inherit;
+  position: relative;
+  width: 60%;
+}
+
+#glass::before{
+  content: “ ”;
+  background: inherit; 
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0; 
+  bottom: 0;
+  box-shadow: inset 0 0 0 3000px rgba(255,255,255,0.3);
+  filter: blur(10px);
+ }
