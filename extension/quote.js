@@ -12,16 +12,23 @@ var settings = {
 
 $.ajax(settings).done(function (response) {
     
-    console.log(response);
-    var obj;
-    obj.author = response[0];
+    var check = moment(moment(), 'YYYY/MM/DD');
+    var day = check.format('D');
+
+    var obj = {
+        author : response.author,
+        category: response.category,
+        quote:response.quote,
+        day:day
+    };
 
     if (GetLocal("quote")) {
 
-        console.log(obj.author);
+        console.log(obj);
+        $('#quoteTxt').html(obj.quote);
     }
     else {
 
-        SaveOneOnly("quote", response);
+        SaveOneOnly("quote", obj);
     }
 });
