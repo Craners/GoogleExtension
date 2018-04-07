@@ -1,4 +1,8 @@
 
+
+#drawer {
+  overflow: hidden;
+}
 .mdl-layout__drawer-right {
     display: -webkit-box;
     display: -webkit-flex;
@@ -35,8 +39,6 @@
     -webkit-transition-property: -webkit-transform;
     transition-property: transform;
     color: #424242;
-    overflow: visible;
-    overflow-y: auto;
     z-index: 5;
   }
   
@@ -96,4 +98,22 @@
     min-height: 1px;
     width: 32px;
     height: 32px;
+  }
+
+  #drawerContent
+  {
+    overflow-y: scroll;
+  }
+
+  .thumbnailRss
+  {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 150px;
+  }
+
+  .titleRss
+  {
+    text-align: center;
   }
