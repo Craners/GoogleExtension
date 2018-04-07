@@ -1,5 +1,6 @@
 var latitude = 0;
 var longitude = 0;
+var weatherObj = {};
 
 function createExpirationDate() {
   var newDateObj = moment(new Date()).add(60, 'm').toDate();
@@ -49,9 +50,10 @@ function getWeather() {
     weatherData["Temperature"] = `Temperature: ${Math.ceil(temperature)} &deg;C`;
     weatherData["TemperatureMin"] = `Min: ${tempMin} &deg;C`;
     weatherData["TemperatureMax"] = `Max: ${tempMax} &deg;C`;
-    var weatherObj = {};
+ 
     weatherObj["ExpirationDate"] = expirationDate;
     weatherObj["WeatherData"] = weatherData;
+
     SaveOneOnly("weather", weatherObj);
     setWeatherInView(weatherData);
 
@@ -72,7 +74,11 @@ function getCity() {
     if (responseData === undefined) { return; }
     else {
       var components = responseData["address_components"];
-      city = `${components[4]["short_name"]},${components[6]["short_name"]}`
+      var location = components[4]["short_name"];
+      var country = components[6]["short_name"];
+      city = `${location},${country}`;
+      weatherObj["WeatherData"]["Location"] = city;
+      SaveOneOnly("weather", weatherObj);
       $("#weather-location").html(city);
     }
   });
