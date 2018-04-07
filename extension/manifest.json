@@ -13,9 +13,10 @@
         "scripts": ["thirdParty/jquery-3.3.1.min.js", "background.js"]
     },
   "permissions" : [
-    "https://s3.amazonaws.com/",
+    "https://s3.amazonaws.com",
     "geolocation",
-    "https://api.iextrading.com/",
-    "https://api.openweathermap.org"
+    "https://api.iextrading.com",
+    "https://api.openweathermap.org",
+    "https://api.rss2json.com"
   ]
 }
