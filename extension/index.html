@@ -12,7 +12,7 @@
   <div class="mdl-layout__drawer">
     <nav class="mdl-navigation">
 
-      <div id="nav-weather">
+      <div id="nav-weather" class="drawerWid">
         <div class="mdl-navigation__link switchBtn switchWidth">Weather</div>
         <span class="mdl-list__item-secondary-action switchBtn">
           <label id="checkWeather" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-2">
@@ -21,7 +21,7 @@
         </span>
       </div>
 
-      <div id="nav-clock">
+      <div id="nav-clock" class="drawerWid">
         <div class="mdl-navigation__link switchBtn switchWidth" href="">World Clock</div>
         <span class="mdl-list__item-secondary-action switchBtn">
           <label id="checkClock" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-1">
@@ -36,7 +36,7 @@
         </form>
       </div>
 
-      <div id="nav-stock">
+      <div id="nav-stock" class="drawerWid">
         <div class="mdl-navigation__link switchBtn switchWidth">Stocks</div>
         <span class="mdl-list__item-secondary-action switchBtn">
           <label id="checkStock" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-3">
@@ -74,48 +74,48 @@
         </div>
       </div>
       <div class="mdl-cell mdl-cell--4-col" id="noflex">
-        <table class="mdl-data-table mdl-shadow--2dp marg noselect" id="clockTable">
+        <table class="mdl-data-table mdl-shadow--2dp marg noselect glass" id="clockTable">
           <tbody>
           </tbody>
         </table>
 
-        <div id="stock" class="marg">
-          <table id="stockTable" class="mdl-data-table mdl-shadow--2dp">
-            <thead>
-              <tr>
-                <th class="mdl-data-table__cell--non-numeric">Symbol</th>
-                <th>Value</th>
-                <th>Variation</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="stockTableBody">
-            </tbody>
-          </table>
-        </div>
+        <table id="stockTable" class="mdl-data-table mdl-shadow--2dp marg glass">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Symbol</th>
+              <th>Value</th>
+              <th>Variation</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="stockTableBody">
+          </tbody>
+        </table>
 
-        <div id="weather-card" class="mdl-card marg">
+        <div id="weather-card" class="mdl-card marg glass">
           <div class="mdl-card__media">
             <i id="weather-image" class="wi"></i>
-            <div id="weather-location"></div>
-            <div id="weather-humidity"></div>
+            <div class="contain">
+                <div id="weather-location"></div>
+                <div id="weather-humidity"></div>
+                <span id="weather-description" class="badge containTop"></span>
+            </div>
           </div>
           <div id="weather-temperature" class="mdl-card__supporting-text">
             <div id="weather-temp"></div>
             <div id="weather-tempMin"></div>
             <div id="weather-tempMax"></div>
-            <div id="weather-description"></div>
           </div>
         </div>
 
-        <div id="glass" class="mdl-card glass">
+        <!-- <div id="glass" class="mdl-card glass">
           <div class="mdl-card__media">
             <h1>Title</h1>
           </div>
           <div class="mdl-card__supporting-text">
             <span>here some text</span>
           </div>
-        </div>
+        </div> -->
 
       </div>
     </div>

@@ -43,6 +43,25 @@ span {
 .layout-transparent {
   background: center / cover;
 }
+
+.mdl-navigation{
+
+  margin: 5%;
+}
+
+.mdl-layout__drawer{
+
+  width: 15%;
+  -webkit-transform: translateX(-500%);
+  -ms-transform: translateX(-500%);
+  transform: translateX(-500%);
+}
+
+.drawerWid{
+
+  width: 90%;
+}
+
 .layout-transparent .mdl-layout__header,
 .layout-transparent .mdl-layout__drawer-button {
   /* This background is dark, so we set text to white. Use 87% black instead if
@@ -52,6 +71,7 @@ span {
 .mdl-layout__drawer-button i{
   margin: auto;
   padding: 10px;
+  width: 70%;
 }
 
 .mdl-chip__text{
@@ -111,11 +131,6 @@ span {
   width: 60%;
   padding-left: 20px;
 }
-#stock .mdl-chip
-{
-  height: auto;
-  display: table;
-}
 
 #stock-list
 {
@@ -131,11 +146,16 @@ span {
 
   font-size: 10px;
 }
+
+#stockTable{
+
+  width: 70%;
+}
 th, td
 {
   vertical-align: middle !important;
   text-align: center !important;
-  
+  padding: 0px !important;
 }
 .md-18
 {
@@ -158,7 +178,7 @@ th, td
 
 #clockTable{
 
-  width: 60%;
+  width: 70%;
 }
 
 .noselect {
@@ -181,24 +201,38 @@ i:hover{
 
 #weather-card{
 
-  width: 60%;
+  width: 70%;
 }
 
 .glass{
 
-  background: inherit;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 5px gray;
+  /* background: inherit; */
   position: relative;
-  width: 60%;
+  width: 70%;
 }
 
-#glass::before{
-  content: “ ”;
-  background: inherit; 
+.contain{
+
+  position: relative;
+}
+
+.containTop{
+
+  width: 100%;
+  height: 100%;
   position: absolute;
+  top: 0;
   left: 0;
-  right: 0;
-  top: 0; 
-  bottom: 0;
-  box-shadow: inset 0 0 0 3000px rgba(255,255,255,0.3);
-  filter: blur(10px);
- }
+}
+
+.badge{
+
+  font-size: 80%;
+  color: #2980b9;
+  display: inline-block;
+  top: 120%;
+  width: auto;
+  padding: 0;
+}
