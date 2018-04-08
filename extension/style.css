@@ -236,3 +236,24 @@ i:hover{
   width: auto;
   padding: 0;
 }
+
+#quoteTxt{
+
+  font-size: 120%;
+  font-style: italic;
+  display: block;
+}
+
+#quote{  
+  
+  text-align: center;
+  width: 28%;
+  position: absolute;
+  bottom: 0;
+}
+
+#quoteAuth{
+
+  font-size: 80%;
+  font-style: italic;
+}

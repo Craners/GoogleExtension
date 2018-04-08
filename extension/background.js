@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     var check = moment(moment(), 'YYYY/MM/DD');
     var day = check.format('D');
-    var rand = Math.floor((Math.random() * 24) + 1);
+    var rand = Math.floor((Math.random() * 25) + 1);
 
     var obj = {
 
@@ -24,12 +24,11 @@ $(document).ready(function () {
 
     if (data.today == day) {
 
-      console.log('its the same day!');
       $('.layout-transparent').css('background-image', 'url(' + `../background/${data.randomNumber}.jpg` + ')');
     }
     else {
 
-      var rand = Math.floor((Math.random() * 23) + 1);
+      var rand = Math.floor((Math.random() * 25) + 1);
       data.today = day;
       data.randomNumber = rand;
 

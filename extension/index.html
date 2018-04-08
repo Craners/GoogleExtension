@@ -55,7 +55,7 @@
     </nav>
   </div>
   <div id="drawer" class="mdl-layout__drawer-right">
-     
+
     <header class="mdl-layout-title">News
       <button id="buttonRss" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
         <i class="material-icons">add</i>
@@ -75,6 +75,10 @@
         <div class="date_time">
           <div class="hours"></div>
           <div class="date"></div>
+        </div>
+        <div id="quote">
+          <span id="quoteTxt"></span>
+          <span id="quoteAuth"></span>
         </div>
       </div>
       <div class="mdl-cell mdl-cell--4-col" id="noflex">
@@ -100,9 +104,9 @@
           <div class="mdl-card__media">
             <i id="weather-image" class="wi"></i>
             <div class="contain">
-                <div id="weather-location"></div>
-                <div id="weather-humidity"></div>
-                <span id="weather-description" class="badge containTop"></span>
+              <div id="weather-location"></div>
+              <div id="weather-humidity"></div>
+              <span id="weather-description" class="badge containTop"></span>
             </div>
           </div>
           <div id="weather-temperature" class="mdl-card__supporting-text">
@@ -111,16 +115,6 @@
             <div id="weather-tempMax"></div>
           </div>
         </div>
-
-        <!-- <div id="glass" class="mdl-card glass">
-          <div class="mdl-card__media">
-            <h1>Title</h1>
-          </div>
-          <div class="mdl-card__supporting-text">
-            <span>here some text</span>
-          </div>
-        </div> -->
-
       </div>
     </div>
   </main>
@@ -129,10 +123,10 @@
 <dialog class="mdl-dialog">
   <h4 class="mdl-dialog__title">Enter RSS Url</h4>
   <div class="mdl-dialog__actions">
-      <div class="mdl-textfield mdl-js-textfield">
-          <input class="mdl-textfield__input" type="text" id="rssUrl">
-          <label class="mdl-textfield__label" for="rssUrl">Text...</label>
-        </div>
+    <div class="mdl-textfield mdl-js-textfield">
+      <input class="mdl-textfield__input" type="text" id="rssUrl">
+      <label class="mdl-textfield__label" for="rssUrl">Text...</label>
+    </div>
     <button id="buttonRssCancel" class="mdl-button">Cancel</button>
     <button id="buttonRssOk" type="button" class="mdl-button close">OK</button>
   </div>
@@ -158,6 +152,7 @@
 <script src="weather.js"></script>
 <script src="snackBar.js"></script>
 <script src="localStorage.js"></script>
+<script src="quote.js"></script>
 
 <script src="news.js"></script>
 <script src="switch.js"></script>
