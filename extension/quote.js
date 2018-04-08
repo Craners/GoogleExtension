@@ -1,3 +1,5 @@
+var check = moment(moment(), 'YYYY/MM/DD');
+var day = check.format('D');
 var settings = {
     "async": true,
     "crossDomain": true,
@@ -10,33 +12,56 @@ var settings = {
     }
 }
 
-$.ajax(settings).done(function (response) {
+function displayQuote(obj) {
 
-    var check = moment(moment(), 'YYYY/MM/DD');
-    var day = check.format('D');
-    var val = GetLocal("quote");
+    $('#quoteTxt').html('"' + obj.quote + '"');
+    $('#quoteAuth').html('- ' + obj.author);
+    $('#quoteAuth').hide();
+}
 
-    var obj = {
-        author: response.author,
-        category: response.category,
-        quote: response.quote,
-        day: day
-    };
+function CallQuote() {
 
-    if (val !== '') {
+    $.ajax(settings).done(function (response) {
 
-        
-        $('#quoteTxt').html('"' + obj.quote + '"');
-        $('#quoteAuth').html('- ' + obj.author);
-        $('#quoteAuth').hide();
-    }
-    else {
+        var val = GetLocal("quote");
+
+        var obj = {
+            author: response.author,
+            category: response.category,
+            quote: response.quote,
+            day: day
+        };
 
         SaveOneOnly("quote", obj);
-    }
-});
+        displayQuote(obj);
+    });
+}
+
 
 $("#quote").hover(function () {
 
     $('#quoteAuth').toggle(200);
+});
+
+$(document).ready(function () {
+
+    var data = GetLocal("quote");
+    var x = data.length - 1;
+    data = data[x];
+
+    if (data === undefined) {
+        CallQuote();
+    }
+    else {
+        if (data.day == day) {
+
+            displayQuote(data);
+        }
+        else {
+
+            CallQuote();
+        }
+    }
+
+
 });
