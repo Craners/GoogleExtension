@@ -103,11 +103,11 @@ var autoComplete = {
 function getAllSymbols() {
     $.ajax({
         "async": true,
+        "crossDomain": true,
         "url": "https://api.iextrading.com/1.0/ref-data/symbols",
         "method": "GET",
         "headers": {
-            "Cache-Control": "no-cache",
-            "Postman-Token": "0cd86039-5e48-05d8-2e68-dcfc89b062f8"
+            "Cache-Control": "no-cache"
         },
         complete: function () {
             $("#stockSpinner").hide();
