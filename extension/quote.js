@@ -25,7 +25,7 @@ $.ajax(settings).done(function (response) {
 
     if (val !== '') {
 
-
+        
         $('#quoteTxt').html('"' + obj.quote + '"');
         $('#quoteAuth').html('- ' + obj.author);
         $('#quoteAuth').hide();
