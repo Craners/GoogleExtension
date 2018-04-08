@@ -72,7 +72,9 @@
   
   .mdl-layout__drawer-right>.mdl-layout-title {
     line-height: 56px;
-    padding-left: 16px;
+    padding-left: 5%;
+    background-color: deepskyblue;
+    color: white;
   }
   
   #notif {
@@ -92,12 +94,14 @@
   #buttonRss
   {
     float:right;
-    margin-top: 12px;
-    margin-right: 12px;
+    margin-top: 3%;
+    margin-right: 5%;
     min-width: 1px;
     min-height: 1px;
     width: 32px;
     height: 32px;
+    color: white;
+    background-color: #FF5252;
   }
 
   #drawerContent
@@ -109,11 +113,29 @@
   {
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: center center;
-    height: 150px;
+    height: 23%;
   }
 
   .titleRss
   {
-    text-align: center;
+    padding-left: 5%;
+  }
+
+  #newsCards{
+
+    margin-bottom: 5%;
+  }
+  
+  #divSupportingText{
+
+    padding: 0;
+    padding-left: 5%;
+    padding-bottom: 5%;
+  }
+
+  /* fix this */
+  #drawer::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
   }
