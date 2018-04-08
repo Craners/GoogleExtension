@@ -1,7 +1,7 @@
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "https://andruxnet-random-famous-quotes.p.mashape.com/",
+    "url": "https://myproxi.herokuapp.com/https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous",
     "method": "GET",
     "headers": {
         "X-Mashape-Key": "uHYXN0iDX2msh3Dr840maf1RReRVp1Ij8AkjsndcEza97O1w9m",
@@ -11,24 +11,32 @@ var settings = {
 }
 
 $.ajax(settings).done(function (response) {
-    
+
     var check = moment(moment(), 'YYYY/MM/DD');
     var day = check.format('D');
+    var val = GetLocal("quote");
 
     var obj = {
-        author : response.author,
+        author: response.author,
         category: response.category,
-        quote:response.quote,
-        day:day
+        quote: response.quote,
+        day: day
     };
 
-    if (GetLocal("quote")) {
+    if (val !== '') {
 
-        console.log(obj);
-        $('#quoteTxt').html(obj.quote);
+
+        $('#quoteTxt').html('"' + obj.quote + '"');
+        $('#quoteAuth').html('- ' + obj.author);
+        $('#quoteAuth').hide();
     }
     else {
 
         SaveOneOnly("quote", obj);
     }
+});
+
+$("#quote").hover(function () {
+
+    $('#quoteAuth').toggle(200);
 });
