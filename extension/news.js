@@ -39,16 +39,18 @@ function addCard(data) {
     var thumbnail = data['thumbnail'];
     var title = data['title'];
     var linkFullArticle = data['link'];
-    var description = data['description'];
+    var description = data['description'].substring(0, 100);
 
     var divMain = $("<div></div>").addClass('demo-card-square mdl-card mdl-shadow--2dp');
+    divMain.attr('id', 'newsCards');
 
     if (endsJpg.test(thumbnail)) {
         var divTitle = $("<div></div>").addClass('mdl-card__title mdl-card--expand thumbnailRss').css('background-image', `url(${thumbnail})`);
     }
     var h2InTitle = $("<h6></h6>").addClass('titleRss').text(title);
 
-    var divSupportingText = $('<div></div>').addClass('mdl-card__supporting-text').text(description);
+    var divSupportingText = $('<div></div>').addClass('mdl-card__supporting-text').text(description + '...');
+    divSupportingText.attr('id', 'divSupportingText');
 
     var divActions = $('<div></div>').addClass('mdl-card__actions mdl-card--border');
     var aInDivActions = $('<a></a>').attr("href", linkFullArticle).attr('target', '_blank').text("Full Article");

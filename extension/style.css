@@ -242,6 +242,7 @@ i:hover{
   font-size: 120%;
   font-style: italic;
   display: block;
+  color: white;
 }
 
 #quote{  
@@ -256,4 +257,10 @@ i:hover{
 
   font-size: 80%;
   font-style: italic;
+  color: white;
+}
+
+#drawerContent{
+
+  padding: 5%;
 }
