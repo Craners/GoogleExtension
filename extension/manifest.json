@@ -1,5 +1,6 @@
 {
   "name": "Rhino Tab",
+  "short_name":"Rhino Tab",
   "description": "Modular new tab. WorldClock, Weather, Stock and News",
   "version": "1.0",
   "incognito": "split",
