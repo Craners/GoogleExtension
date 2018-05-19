@@ -149,8 +149,9 @@
     height: 10%;
   }
 
-  .chip-margin
+  .chip-style
   {
     margin-left: 5;
+    cursor: pointer;
   }
   

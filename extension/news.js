@@ -29,7 +29,7 @@ $('.mdl-layout__obfuscator-right').click(function () {
 });
 
 function addDefaultChip(name, url) {
-    var spanMainChip = $('<span></span>').addClass('mdl-chip chip-margin');
+    var spanMainChip = $('<span></span>').addClass('mdl-chip chip-style');
     var spanNestedChip = $('<span></span>').addClass('mdl-chip__text').text(name);
     spanMainChip.append(spanNestedChip);
 
