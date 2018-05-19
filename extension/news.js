@@ -28,6 +28,21 @@ $('.mdl-layout__obfuscator-right').click(function () {
 
 });
 
+function addDefaultChip(name, url) {
+    var spanMainChip = $('<span></span>').addClass('mdl-chip chip-margin');
+    var spanNestedChip = $('<span></span>').addClass('mdl-chip__text').text(name);
+    spanMainChip.append(spanNestedChip);
+
+    spanMainChip.click(function () {
+        var savedSources = GetLocal("news");
+        if ($.inArray(url, savedSources) === -1) {
+            getRssFeed(url);
+        }
+    });
+
+    $("#drawerChips").append(spanMainChip);
+}
+
 function addSource(title) {
     var h5SourceTitle = $("<h5></h5>").addClass('titleRss').text(title);
 
@@ -79,9 +94,10 @@ function getRssFeed(url) {
     $.ajax(settings).done(function (response) {
         SaveLocal("news", url);
         addSource(response['feed']['title'])
-        response["items"].forEach(element => {
+        for (i = 0; i < 5; i++) {
+            var element = response["items"][i];
             addCard(element);
-        });
+        }
     });
 
 }
@@ -107,4 +123,10 @@ $(document).ready(function () {
         getRssFeed(rssUrlText);
         dialog.close();
     });
+
+    addDefaultChip("BBC UK", "http://feeds.bbci.co.uk/news/rss.xml?edition=uk#");
+    addDefaultChip("BBC Sports", "http://feeds.bbci.co.uk/sport/football/rss.xml?edition=int#");
+    addDefaultChip("The Verge", "https://www.theverge.com/rss/group/features/index.xml");
+    addDefaultChip("TechCrunch", "http://feeds.feedburner.com/TechCrunch/");
+    addDefaultChip("Hacker News", "https://news.ycombinator.com/rss");
 });

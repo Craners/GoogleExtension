@@ -20,6 +20,7 @@ $(document).ready(function () {
     switchVisibility("checkClock", "clockTable");
     switchVisibility("checkStock", "stockTable");
     var switchStatus = GetLocal("switch");
+    if (switchStatus.length == 0) { return; }
     switchStatus.forEach(element => {
         $("#" + element).hide();
         if (element == "weather-card") {
