@@ -23,15 +23,12 @@ function CallQuote() {
 
     $.ajax(settings).done(function (response) {
 
-        var val = GetLocal("quote");
-
         var obj = {
-            author: response.author,
-            category: response.category,
-            quote: response.quote,
+            author: response[0].author,
+            category: response[0].category,
+            quote: response[0].quote,
             day: day
         };
-
         SaveOneOnly("quote", obj);
         displayQuote(obj);
     });
@@ -50,9 +47,11 @@ $(document).ready(function () {
     data = data[x];
 
     if (data === undefined) {
+        
         CallQuote();
     }
     else {
+
         if (data.day == day) {
 
             displayQuote(data);
@@ -62,6 +61,4 @@ $(document).ready(function () {
             CallQuote();
         }
     }
-
-
 });

@@ -1,7 +1,7 @@
 {
-  "name": "NewTab",
-  "description": "Google Extension by Us",
-  "version": "0.2",
+  "name": "Rhino Tab",
+  "description": "Modular new tab. WorldClock, Weather, Stock and News",
+  "version": "1.0",
   "incognito": "split",
   "chrome_url_overrides": {
     "newtab": "index.html"
