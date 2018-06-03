@@ -4,14 +4,14 @@ Install the Rhino here: https://goo.gl/kZEdo5
 
 ## Getting Started
 
-This was our humble attempt at creating a modulare new tab chrome extension. 
+This was our humble attempt at creating a modular new tab chrome extension. 
 ## Built With
 built with love but also:
 * JavaScript
 * Html and CSS
 * JQuery
 
-## Contributing
+## Contributors
 
 Radu Stoica and Amir Kiumarsi
 
