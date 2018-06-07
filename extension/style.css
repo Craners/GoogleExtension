@@ -250,7 +250,7 @@ i:hover{
   text-align: center;
   width: 28%;
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
 }
 
 #quoteAuth{
