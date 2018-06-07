@@ -126,7 +126,7 @@ $(document).ready(function () {
 
     addDefaultChip("BBC UK", "http://feeds.bbci.co.uk/news/rss.xml?edition=uk#");
     addDefaultChip("BBC Sports", "http://feeds.bbci.co.uk/sport/football/rss.xml?edition=int#");
-    addDefaultChip("The Verge", "https://www.theverge.com/rss/group/features/index.xml");
+    addDefaultChip("The Verge", "https://www.theverge.com/rss/index.xml");
     addDefaultChip("TechCrunch", "http://feeds.feedburner.com/TechCrunch/");
     addDefaultChip("Hacker News", "https://news.ycombinator.com/rss");
 });
