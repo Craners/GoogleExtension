@@ -145,8 +145,8 @@
   {
     text-align: center;
     padding: 10;
-    padding-bottom: 30;
-    height: 10%;
+    /* padding-bottom: 30;
+    height: 10%; */
   }
 
   .chip-style
