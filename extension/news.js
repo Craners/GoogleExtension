@@ -1,5 +1,6 @@
 var endsJpg = /.*.jpg/
 var loaded = false;
+var format = /[<>_{}]/;
 
 $('#notif').click(function () {
     if ($('.mdl-layout__drawer-right').hasClass('active')) {
@@ -62,9 +63,12 @@ function addCard(data) {
     if (endsJpg.test(thumbnail)) {
         var divTitle = $("<div></div>").addClass('mdl-card__title mdl-card--expand thumbnailRss').css('background-image', `url(${thumbnail})`);
     }
-    var h2InTitle = $("<h6></h6>").addClass('titleRss').text(title);
+    var h6InTitle = $("<h6></h6>").addClass('titleRss').html(title);
 
-    var divSupportingText = $('<div></div>').addClass('mdl-card__supporting-text').text(description + '...');
+    var divSupportingText = $('<div></div>').addClass('mdl-card__supporting-text').text('No description');
+    if (!format.test(description)) {
+        divSupportingText.html(description + '...');
+    }
     divSupportingText.attr('id', 'divSupportingText');
 
     var divActions = $('<div></div>').addClass('mdl-card__actions mdl-card--border');
@@ -73,7 +77,7 @@ function addCard(data) {
     divActions.append(aInDivActions);
 
     divMain.append(divTitle);
-    divMain.append(h2InTitle);
+    divMain.append(h6InTitle);
     divMain.append(divSupportingText);
     divMain.append(divActions);
 
