@@ -1,5 +1,5 @@
 function update() {
-        $('.date').html(moment().format('dddd, D MMMM YYYY'));
+        $('.date').html(moment().format('ddd, D MMMM YYYY'));
         $('.hours').html(moment().format('H:mm:ss'));        
 }
 $(document).ready(function () {
