@@ -4,17 +4,22 @@
   <title>New Tab</title>
   <link rel="icon" href="logo/logo16.png" type="image/png" sizes="16x16">
 </head>
-<dialog id="nameDialog" class="mdl-dialog">
-  <h3 class="mdl-dialog__title">MDL Dialog</h3>
+<dialog id="nameDialog" class="mdl-dialog noselect glass2">
+  <h3 class="mdl-dialog__title">Welcome</h3>
   <div class="mdl-dialog__content">
-    <p>
-      This is an example of the Material Design Lite dialog component.
-      Please use responsibly.
-    </p>
+    <form action="#">
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="sample1">
+        <label class="mdl-textfield__label" for="sample1">name...</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type="text" id="sample1">
+        <label class="mdl-textfield__label" for="sample1">email...</label>
+      </div>
+    </form>
   </div>
   <div class="mdl-dialog__actions">
-    <button type="button" class="mdl-button">Close</button>
-    <button type="button" class="mdl-button" disabled>Disabled action</button>
+    <button type="button" id="fullWidth" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">go!</button>
   </div>
 </dialog>
 <div class="layout-transparent mdl-layout mdl-js-layout">

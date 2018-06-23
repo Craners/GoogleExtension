@@ -213,6 +213,16 @@ i:hover{
   width: 70%;
 }
 
+.glass2{
+
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 5px gray;
+}
+
+#fullWidth{
+  width: 100%;
+}
+
 .contain{
 
   position: relative;
