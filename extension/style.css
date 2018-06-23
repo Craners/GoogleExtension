@@ -269,3 +269,8 @@ i:hover{
 {
   margin-bottom: 15px;
 }
+
+#soccerTable{
+    width: 80%;
+    table-layout: fixed;
+}
