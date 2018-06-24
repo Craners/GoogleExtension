@@ -3,11 +3,23 @@ $(document).ready(function () {
         url: `https://myproxi.herokuapp.com/http://api.football-data.org/v1/competitions/467/fixtures`,
         headers: {"X-Auth-Token": "0a47d94773f74ad3b8c7608f419bf593"},
         type: 'GET',
+        beforeSend: function() {
+
+            var table = document.getElementById("tableResult");
+            var tr = document.createElement("tr");
+            var td = document.createElement("td");
+            tr.appendChild(td);
+            td.id = "myid";
+            table.appendChild(tr);
+            $('#myid').attr('colspan',4);
+            $('#myid').html("<img id='gifload' src='/logo/_preloader.gif'/'>");
+          },
         data: {
             format: 'json'
         },
         success: function (response) {
 
+            $('#tableResult').html("");
             var games = response.fixtures;
             var game = [];
             games.forEach(element => {
@@ -38,12 +50,15 @@ $(document).ready(function () {
                 var txt3 = document.createTextNode(game[index].awayTeamName);
                 if(game[index].status == "FINISHED"){
                     var txt4 = document.createTextNode("FT");
+                    td4.id = "colorGreen";
                 }
                 else if(game[index].status == "IN_PLAY"){
                     var txt4 = document.createTextNode("Live");
+                    td4.id = "colorRed";
                 }
                 else{
                     var txt4 = document.createTextNode("Schuduled");
+                    td4.id = "colorBlack";
                 }
 
                 td.appendChild(txt);

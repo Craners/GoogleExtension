@@ -194,10 +194,6 @@ th, td
 i{
   cursor: pointer;
 }
-i:hover{
-
-  color: #d35400;
-}
 
 #weather-card{
 
@@ -273,4 +269,17 @@ i:hover{
 #soccerTable{
     width: 80%;
     table-layout: fixed;
+}
+
+#gifload{
+
+  width: 20%;
+}
+
+#colorGreen{
+  color: green;
+}
+
+#colorRed{
+  color: red;
 }
