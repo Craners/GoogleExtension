@@ -77,11 +77,11 @@ $(document).ready(function () {
                 tr.appendChild(td4);
                 table.appendChild(tr);
             }
-            console.log(game);
+            // console.log(game);
         },
         error: function () {
             // $('#errors').text("There was an error processing your request. Please try again.")
-            console.log('error');
+            console.log('Sorry, we failed to connect to the server for match results');
 
         }
     });
