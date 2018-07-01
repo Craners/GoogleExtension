@@ -1,3 +1,5 @@
+var dateFormat = 'H:mm'; //<-------- This part will get rid of the warning.
+
 $(document).ready(function () {
     $.ajax({
         url: `https://myproxi.herokuapp.com/http://api.football-data.org/v1/competitions/467/fixtures`,
@@ -62,7 +64,13 @@ $(document).ready(function () {
                     td4.id = "colorRed";
                 }
                 else {
-                    var txt4 = document.createTextNode("Schuduled");
+                    // var def = moment.tz.guess(); //guess where they are?
+                    // var m = moment();
+                    var m2 = moment(game[index].date);
+                    m2 = (m2).format(dateFormat);
+
+                    $("#status").text("Starts at");
+                    var txt4 = document.createTextNode(m2);
                     td4.id = "colorBlack";
                 }
 
