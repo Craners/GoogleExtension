@@ -283,3 +283,12 @@ i{
 #colorRed{
   color: red;
 }
+
+.mdl-layout .mdl-layout__drawer-button i:hover {
+  background-color: rgba(211,211,211, 0.8);
+  color: #FFF;
+}
+
+.mdl-layout .mdl-layout__drawer-button{
+  margin: 0;
+}
