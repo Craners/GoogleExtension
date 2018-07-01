@@ -292,3 +292,9 @@ i{
 .mdl-layout .mdl-layout__drawer-button{
   margin: 0;
 }
+
+#weather-image-link
+{
+  text-decoration: none;
+  color: inherit;
+}

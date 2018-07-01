@@ -37,6 +37,15 @@
         </form>
       </div>
 
+      <div id="nav-soccer" class="drawerWid">
+        <div class="mdl-navigation__link switchBtn switchWidth">Soccer</div>
+        <span class="mdl-list__item-secondary-action switchBtn">
+          <label id="checkSoccer" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-4">
+            <input type="checkbox" id="list-switch-4" class="mdl-switch__input" checked />
+          </label>
+        </span>
+      </div>
+
       <div id="nav-stock" class="drawerWid">
         <div class="mdl-navigation__link switchBtn switchWidth">Stocks</div>
         <span class="mdl-list__item-secondary-action switchBtn">
@@ -122,7 +131,7 @@
 
         <div id="weather-card" class="mdl-card marg glass">
           <div class="mdl-card__media">
-            <i id="weather-image" class="wi"></i>
+            <a id="weather-image-link"> <i id="weather-image" class="wi"></i></a>
             <div class="contain">
               <div id="weather-location"></div>
               <div id="weather-humidity"></div>
@@ -175,10 +184,10 @@
 <script src="quote.js"></script>
 
 <script src="news.js"></script>
-<script src="switch.js"></script>
 <script src="stock.js"></script>
 <script src="clock.js"></script>
 <script src="keybindings.js"></script>
 <script src="worldcup.js"></script>
+<script src="switch.js"></script>
 
 </html>

@@ -19,6 +19,7 @@ $(document).ready(function () {
     switchVisibility("checkWeather", "weather-card");
     switchVisibility("checkClock", "clockTable");
     switchVisibility("checkStock", "stockTable");
+    switchVisibility("checkSoccer", "soccerTable");
     var switchStatus = GetLocal("switch");
     if (switchStatus.length == 0) { return; }
     switchStatus.forEach(element => {
@@ -31,6 +32,9 @@ $(document).ready(function () {
         }
         else if (element == "stockTable") {
             setToggleOff("checkStock");
+        }
+        else if(element == "soccerTable") {
+            setToggleOff("checkSoccer");
         }
     });
 });
