@@ -283,3 +283,9 @@ i{
 #colorRed{
   color: red;
 }
+
+#weather-image-link
+{
+  text-decoration: none;
+  color: inherit;
+}

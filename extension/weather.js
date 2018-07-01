@@ -21,6 +21,29 @@ function setWeatherInView(weatherData) {
   $("#weather-temp").html(weatherData["Temperature"]);
   $("#weather-tempMin").html(weatherData["TemperatureMin"]);
   $("#weather-tempMax").html(weatherData["TemperatureMax"]);
+  setExternalLinkURL(weatherData["Location"]);
+}
+
+function setExternalLinkURL(location)
+{
+  var settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": `http://query.yahooapis.com/v1/public/yql?q=select * from geo.places where text="${location}"&format=json`,
+    "method": "GET"
+  }
+
+  $.ajax(settings).done(function (response) {
+    var loc = response["query"]["results"]["place"]["name"];
+    var woeid = response["query"]["results"]["place"]["woeid"];
+
+    var url = `https://www.yahoo.com/news/weather/netherlands/${loc}/${loc}-${woeid}`;
+    
+    $("#weather-image-link").attr('href', `${url}`);
+    $("#weather-image-link").attr('target', `_blank`);
+    $("#weather-image-link").attr('title', `Click for more info...`);
+    
+  });
 }
 
 function getWeather() {
