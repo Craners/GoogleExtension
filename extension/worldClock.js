@@ -1,4 +1,10 @@
-$(document).ready(function () {
+
+function mainWorldClock() {
+
+  var switchArr = GetLocal("switch");
+  if (IteminArray(switchArr, "clockTable")) {
+    return;
+  }
 
   var listOfTimes = [];
   var InitlistOfTimes = [];
@@ -94,5 +100,9 @@ $(document).ready(function () {
       init();
     }
   });
+}
+
+$(document).ready(function () {
+  mainWorldClock();
 });
 

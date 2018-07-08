@@ -8,8 +8,8 @@ function createExpirationDate() {
 }
 
 function toTitleCase(str) {
-  return str.replace(/(?:^|\s)\w/g, function(match) {
-      return match.toUpperCase();
+  return str.replace(/(?:^|\s)\w/g, function (match) {
+    return match.toUpperCase();
   });
 }
 
@@ -24,8 +24,7 @@ function setWeatherInView(weatherData) {
   setExternalLinkURL(weatherData["Location"]);
 }
 
-function setExternalLinkURL(location)
-{
+function setExternalLinkURL(location) {
   var settings = {
     "async": true,
     "crossDomain": true,
@@ -38,11 +37,11 @@ function setExternalLinkURL(location)
     var woeid = response["query"]["results"]["place"]["woeid"];
 
     var url = `https://www.yahoo.com/news/weather/netherlands/${loc}/${loc}-${woeid}`;
-    
+
     $("#weather-image-link").attr('href', `${url}`);
     $("#weather-image-link").attr('target', `_blank`);
     $("#weather-image-link").attr('title', `Click for more info...`);
-    
+
   });
 }
 
@@ -51,7 +50,18 @@ function getWeather() {
     "async": true,
     "crossDomain": true,
     "url": `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&APPID=86c75ec64e0f4f15ec09923d141350f9`,
-    "method": "GET"
+    "method": "GET",
+    beforeSend: function () {
+
+      var table = document.getElementById("weather-card");
+      var tr = document.createElement("tr");
+      var td = document.createElement("td");
+      tr.appendChild(td);
+      td.id = "myid";
+      table.appendChild(tr);
+      $('#myid').attr('colspan', 4);
+      $('#myid').html("<img id='gifload' src='/logo/_preloader.gif'/'>");
+    }
   }
 
   $.ajax(settings).done(function (response) {
@@ -73,7 +83,7 @@ function getWeather() {
     weatherData["Temperature"] = `Temperature: ${Math.ceil(temperature)} &deg;C`;
     weatherData["TemperatureMin"] = `Min: ${tempMin} &deg;C`;
     weatherData["TemperatureMax"] = `Max: ${tempMax} &deg;C`;
- 
+
     weatherObj["ExpirationDate"] = expirationDate;
     weatherObj["WeatherData"] = weatherData;
 
@@ -128,7 +138,12 @@ function getLocation() {
   }
 }
 
-$(document).ready(function () {
+function mainWeather() {
+  var switchArr = GetLocal("switch");
+  if (IteminArray(switchArr, "weather-card")) {
+    return;
+  }
+
   var weatherObj = GetLocal("weather");
   if (weatherObj === '') {
     getLocation();
@@ -144,5 +159,9 @@ $(document).ready(function () {
       setWeatherInView(weatherData);
     }
   }
+}
+
+$(document).ready(function () {
+  mainWeather();
 });
 

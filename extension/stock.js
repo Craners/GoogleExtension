@@ -128,7 +128,10 @@ function getAllSymbols() {
 
 function applyDefaultStock() {
     var def = $(`<tr><th class="defaultStock" colspan="4">No stock</th></tr>`);
-    $("#stockTableBody").append(def);
+    if ($("#stockTableBody tr").length === 0) {
+
+        $("#stockTableBody").append(def);
+    }
 }
 
 function addStocksFromLocalStorage() {
@@ -151,8 +154,18 @@ $("#addStock").click(function () {
     }
 });
 
-$(document).ready(function () {
+function mainStock() {
+    var switchArr = GetLocal("switch");
+    if (IteminArray(switchArr, "stockTable")) {
+        $("#stockSpinner").hide();
+        return;
+    }
+
     $("#stockSpinner").hide();
     addStocksFromLocalStorage();
     showAutoComplete("#addStock", autoComplete);
+}
+
+$(document).ready(function () {
+    mainStock();
 });

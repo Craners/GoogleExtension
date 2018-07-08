@@ -1,6 +1,11 @@
 var dateFormat = 'H:mm'; //<-------- This part will get rid of the warning.
 
-$(document).ready(function () {
+function mainSoccer() {
+    var switchArr = GetLocal("switch");
+    if (IteminArray(switchArr, "soccerTable")) {
+        return;
+    }
+
     $.ajax({
         url: `https://myproxi.herokuapp.com/http://api.football-data.org/v1/competitions/467/fixtures`,
         headers: { "X-Auth-Token": "0a47d94773f74ad3b8c7608f419bf593" },
@@ -93,4 +98,8 @@ $(document).ready(function () {
 
         }
     });
+}
+
+$(document).ready(function () {
+    mainSoccer();
 });

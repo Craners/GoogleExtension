@@ -4,11 +4,31 @@ function switchVisibility(switchId, elementId) {
         $("#" + elementId).toggle();
         if ($("#" + elementId).is(":visible")) {
             RemoveFromLocal("switch", elementId);
+            callMainBasedOnTag(elementId);
         }
         else {
             SaveLocal("switch", elementId);
         }
     });
+}
+
+function callMainBasedOnTag(tag)
+{    
+    switch(tag)
+    {
+        case "weather-card":
+        mainWeather();
+        break;
+        case "clockTable":
+        mainWorldClock();
+        break;
+        case "soccerTable":
+        mainSoccer();
+        break;
+        case "stockTable":
+        mainStock();
+        break;
+    }
 }
 
 function setToggleOff(switchId) {
