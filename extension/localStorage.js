@@ -98,3 +98,12 @@ function GetLocal(section) {
     }
   }
 }
+
+function IteminArray(array, item)
+{    
+    if(array.includes(item))
+    {
+      return true;
+    }
+    return false;
+}
