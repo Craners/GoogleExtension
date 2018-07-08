@@ -86,7 +86,7 @@ function populateListHtml(list) {
 var autoComplete = {
     source: allSymbols,
     minLength: 3,
-    select: function (event, ui) {
+    select: function (event, ui) {        
         var split = ui.item.label.split(",");
         var symbol = split[0];
         if (listStocks[symbol]) {
@@ -154,6 +154,22 @@ $("#addStock").click(function () {
     }
 });
 
+// function plusAddEventHandler() {
+// //     var def = $(`<tr><th class="defaultStock" colspan="4"> 
+
+// //     <form action="#" id="StockAdd">
+// //           <div class="mdl-textfield mdl-js-textfield">
+// //             <input class="mdl-textfield__input" type="text" id="addStock">
+// //             <label class="mdl-textfield__label" for="addStock" id="addStockTXT">Add Stock...</label>
+// //           </div>
+// //           <div id="stockSpinner" class="mdl-spinner mdl-js-spinner is-active"></div>
+// //         </form>
+// //   </th></tr>`);
+// //     $("#stockTableBody").append(def);    
+// //     showAutoComplete("#addStock", autoComplete);
+
+// }
+
 function mainStock() {
     var switchArr = GetLocal("switch");
     if (IteminArray(switchArr, "stockTable")) {
@@ -164,6 +180,7 @@ function mainStock() {
     $("#stockSpinner").hide();
     addStocksFromLocalStorage();
     showAutoComplete("#addStock", autoComplete);
+   // $("#plusStock").bind("click", plusAddEventHandler);
 }
 
 $(document).ready(function () {
