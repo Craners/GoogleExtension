@@ -298,3 +298,10 @@ i{
   text-decoration: none;
   color: inherit;
 }
+
+/* Overflow list (stock + world clock */
+.ui-menu {
+  overflow: auto;
+  max-height: 40%;
+  width: 50%;
+}

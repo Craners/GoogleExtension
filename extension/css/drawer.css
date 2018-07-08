@@ -120,6 +120,7 @@
   .titleRss
   {
     padding-left: 5%;
+    margin-top: 5px;
   }
 
   #newsCards{
@@ -143,10 +144,9 @@
 
   .default-chips 
   {
-    text-align: center;
     padding: 10;
-    /* padding-bottom: 30;
-    height: 10%; */
+    min-height: 11%;
+    overflow: overlay;
   }
 
   .chip-style
