@@ -50,18 +50,7 @@ function getWeather() {
     "async": true,
     "crossDomain": true,
     "url": `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&APPID=86c75ec64e0f4f15ec09923d141350f9`,
-    "method": "GET",
-    beforeSend: function () {
-
-      var table = document.getElementById("weather-card");
-      var tr = document.createElement("tr");
-      var td = document.createElement("td");
-      tr.appendChild(td);
-      td.id = "myid";
-      table.appendChild(tr);
-      $('#myid').attr('colspan', 4);
-      $('#myid').html("<img id='gifload' src='/logo/_preloader.gif'/'>");
-    }
+    "method": "GET"
   }
 
   $.ajax(settings).done(function (response) {
