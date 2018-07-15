@@ -3,6 +3,12 @@
 <head>
   <title>New Tab</title>
   <link rel="icon" href="logo/logo16.png" type="image/png" sizes="16x16">
+  <link rel="stylesheet" type="text/css" href="thirdParty/jquery-ui.css">
+  <link rel="stylesheet" href="./thirdParty/mdl/material.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
+  <link rel="stylesheet" type="text/css" href="css/drawer.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <div class="layout-transparent mdl-layout mdl-js-layout">
   <header class="mdl-layout__header mdl-layout__header--transparent">
@@ -122,7 +128,9 @@
               <th class="mdl-data-table__cell--non-numeric">Symbol</th>
               <th>Value</th>
               <th>Variation</th>
-              <th id="plusStock"> <!-- <i class="material-icons md-18">add_circle</i>  --></th>
+              <th id="plusStock">
+                <!-- <i class="material-icons md-18">add_circle</i>  -->
+              </th>
 
             </tr>
           </thead>
@@ -132,7 +140,9 @@
 
         <div id="weather-card" class="mdl-card marg glass">
           <div class="mdl-card__media">
-            <a id="weather-image-link"> <i id="weather-image" class="wi"></i></a>
+            <a id="weather-image-link">
+              <i id="weather-image" class="wi"></i>
+            </a>
             <div class="contain">
               <div id="weather-location"></div>
               <div id="weather-humidity"></div>
@@ -166,15 +176,12 @@
   <button class="mdl-snackbar__action" type="button"></button>
 </div>
 <script src="thirdParty/jquery-3.3.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="thirdParty/jquery-ui.css">
+
 <script src="thirdParty/jquery-ui.js"></script>
 <script src="background.js"></script>
-<link rel="stylesheet" href="./thirdParty/mdl/material.min.css">
-<link rel="stylesheet" type="text/css" href="style.css">
+
 <script src="./thirdParty/mdl/material.min.js"></script>
-<link rel="stylesheet" type="text/css" href="css/weather-icons.min.css">
-<link rel="stylesheet" type="text/css" href="css/drawer.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
 <script src="thirdParty/moment.js"></script>
 <script src="thirdParty/moment-timezone-with-data.js"></script>
 <script src="autoComplete.js"></script>
