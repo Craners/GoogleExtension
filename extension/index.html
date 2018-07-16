@@ -66,7 +66,7 @@
   </div>
   <div id="drawer" class="mdl-layout__drawer-right">
 
-    <header class="mdl-layout-title">News
+    <!-- <header class="mdl-layout-title">News
       <button id="buttonRss" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
         <i class="material-icons">add</i>
       </button>
@@ -79,7 +79,23 @@
     <hr>
 
     <main id="drawerContent">
-    </main>
+    </main> -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">News</span>
+          <button id="buttonRss" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+            <i class="material-icons">add</i>
+          </button>
+        </div>
+        <div class="mdl-layout__tab-bar mdl-js-ripple-effect" id="drawerChips">
+
+        </div>
+      </header>
+      <main class="mdl-layout__content scrollable">
+      </main>
+    </div>
 
   </div>
   <main class="mdl-layout__content">
@@ -122,7 +138,9 @@
               <th class="mdl-data-table__cell--non-numeric">Symbol</th>
               <th>Value</th>
               <th>Variation</th>
-              <th id="plusStock"> <!-- <i class="material-icons md-18">add_circle</i>  --></th>
+              <th id="plusStock">
+                <!-- <i class="material-icons md-18">add_circle</i>  -->
+              </th>
 
             </tr>
           </thead>
@@ -132,7 +150,9 @@
 
         <div id="weather-card" class="mdl-card marg glass">
           <div class="mdl-card__media">
-            <a id="weather-image-link"> <i id="weather-image" class="wi"></i></a>
+            <a id="weather-image-link">
+              <i id="weather-image" class="wi"></i>
+            </a>
             <div class="contain">
               <div id="weather-location"></div>
               <div id="weather-humidity"></div>

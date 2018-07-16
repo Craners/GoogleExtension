@@ -30,9 +30,21 @@ $('.mdl-layout__obfuscator-right').click(function () {
 });
 
 function addDefaultChip(name, url) {
-    var spanMainChip = $('<span></span>').addClass('mdl-chip chip-style');
-    var spanNestedChip = $('<span></span>').addClass('mdl-chip__text').text(name);
-    spanMainChip.append(spanNestedChip);
+    var spanMainChip = $('<a></a>').addClass('mdl-layout__tab');
+    spanMainChip.text(name);
+    name = name.replace(/\s/g, '');
+    spanMainChip.attr('id', name+'Tab');
+    spanMainChip.attr('href', '#'+name);
+    // spanMainChip.append(spanNestedChip);
+
+    var view = $('.scrollable');
+    var addView = $('<section></section>').addClass('mdl-layout__tab-panel');
+    addView.attr('id', name);
+    var pageContent = $('<div></div>').addClass('page-content');
+    pageContent.attr('id', name);
+    addView.append(pageContent);
+    view.append(addView);
+
 
     spanMainChip.click(function () {
         var savedSources = GetLocal("news");
@@ -47,13 +59,16 @@ function addDefaultChip(name, url) {
 function addSource(title) {
     var h5SourceTitle = $("<h5></h5>").addClass('titleRss').text(title);
 
-    $('#drawerContent').append(h5SourceTitle);
+    $('.drawerContent').append(h5SourceTitle);
 }
 
-function addCard(data) {
+function addCard(data,agency) {
+    
+    agency = agency.replace(/\s/g, '');
 
     var thumbnail = data['thumbnail'];
     var title = data['title'];
+    
     var linkFullArticle = data['link'];
     var description = data['description'].substring(0, 100);
 
@@ -81,7 +96,7 @@ function addCard(data) {
     divMain.append(divSupportingText);
     divMain.append(divActions);
 
-    $('#drawerContent').append(divMain);
+    $('#'+agency).append(divMain);
 }
 
 function getRssFeed(url) {
@@ -96,11 +111,10 @@ function getRssFeed(url) {
     }
 
     $.ajax(settings).done(function (response) {
-        SaveLocal("news", url);
-        addSource(response['feed']['title'])
+        SaveLocal("news", url);        
         for (i = 0; i < 5; i++) {
             var element = response["items"][i];
-            addCard(element);
+            addCard(element,response['feed']['title']);
         }
     });
 
@@ -128,9 +142,9 @@ $(document).ready(function () {
         dialog.close();
     });
 
-    addDefaultChip("BBC UK", "http://feeds.bbci.co.uk/news/rss.xml?edition=uk#");
-    addDefaultChip("BBC Sports", "http://feeds.bbci.co.uk/sport/football/rss.xml?edition=int#");
-    addDefaultChip("The Verge", "https://www.theverge.com/rss/index.xml");
+    addDefaultChip("BBC News - Home", "http://feeds.bbci.co.uk/news/rss.xml?edition=uk#");
+    addDefaultChip("BBC Sport - Football", "http://feeds.bbci.co.uk/sport/football/rss.xml?edition=int#");
+    addDefaultChip("The Verge -  All Posts", "https://www.theverge.com/rss/index.xml");
     addDefaultChip("TechCrunch", "http://feeds.feedburner.com/TechCrunch/");
     addDefaultChip("Hacker News", "https://news.ycombinator.com/rss");
 });
