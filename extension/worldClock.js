@@ -28,8 +28,8 @@ function mainWorldClock() {
         InitlistOfTimes.forEach(element => {
 
           var x1 = m.tz(element).format(dateFormat); // 2013-11-18T06:00:00+01:00
-          // var x1 = moment.tz(m, dateFormat, element);
-          x1 = moment(x1);   // parsed as 4:30 local time
+          var x1 = moment.tz(x1, dateFormat, element);
+          // x1 = moment(x1);   // parsed as 4:30 local time
           listOfTimes.push(x1);
         });
       } else {
