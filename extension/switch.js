@@ -12,27 +12,32 @@ function switchVisibility(switchId, elementId) {
     });
 }
 
-function callMainBasedOnTag(tag)
-{    
-    switch(tag)
-    {
+function callMainBasedOnTag(tag) {
+    switch (tag) {
         case "weather-card":
-        mainWeather();
-        break;
+            mainWeather();
+            break;
         case "clockTable":
-        mainWorldClock();
-        break;
+            mainWorldClock();
+            break;
         case "soccerTable":
-        mainSoccer();
-        break;
+            mainSoccer();
+            break;
         case "stockTable":
-        mainStock();
-        break;
+            mainStock();
+            break;
     }
 }
 
 function setToggleOff(switchId) {
-    $('#' + switchId)[0].MaterialSwitch.off();
+    var matSwitchElement = $('#' + switchId)[0].MaterialSwitch;
+    if (matSwitchElement !== undefined) {
+        matSwitchElement.off();
+    }
+    else
+    {
+        window.location.reload(true);
+    }
 }
 
 $(document).ready(function () {
@@ -53,7 +58,7 @@ $(document).ready(function () {
         else if (element == "stockTable") {
             setToggleOff("checkStock");
         }
-        else if(element == "soccerTable") {
+        else if (element == "soccerTable") {
             setToggleOff("checkSoccer");
         }
     });
