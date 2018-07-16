@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     var check = moment(moment(), 'YYYY/MM/DD');
     var day = check.format('D');
-    var rand = Math.floor((Math.random() * 30) + 1);
+    var rand = Math.floor((Math.random() * 11) + 1);
 
     var obj = {
 
@@ -28,7 +28,7 @@ $(document).ready(function () {
     }
     else {
 
-      var rand = Math.floor((Math.random() * 30) + 1);
+      var rand = Math.floor((Math.random() * 11) + 1);
       data.today = day;
       data.randomNumber = rand;
 
