@@ -2,7 +2,7 @@
   "name": "Rhino Tab",
   "short_name":"Rhino Tab",
   "description": "Modular new tab. WorldClock, Weather, Stock and News",
-  "version": "1.6.3",
+  "version": "1.6.5",
   "incognito": "split",
   "chrome_url_overrides": {
     "newtab": "index.html"
