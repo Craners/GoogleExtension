@@ -94,7 +94,10 @@ function mainSoccer() {
         },
         error: function () {
             // $('#errors').text("There was an error processing your request. Please try again.")
-            console.log('Sorry, we failed to connect to the server for match results');
+            // console.log('Sorry, we failed to connect to the server for match results');
+            $('#tableResult').html("");
+            var def = $(`<tr><th class="defaultStock" colspan="4">Sorry, we failed to connect to the server for match results</th></tr>`);
+            $("#tableResult").append(def);
 
         }
     });

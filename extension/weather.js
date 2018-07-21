@@ -123,7 +123,9 @@ function getLocation() {
 
   function fail(error) {
     console.log("coordinates could not be obtained.");
-    return;
+    $("#weather-location").html("");
+    $("#weather-description").html("Please check your internet connection.");
+    $("#weather-location").html("Sorry, Cordinates could not be obtained.");
   }
 }
 
