@@ -3,8 +3,9 @@ var day = check.format('D');
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "https://myproxi.herokuapp.com/https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous",
+    "url": "https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous",
     "method": "GET",
+    timeout: 3000, // sets timeout to 3 seconds
     "headers": {
         "X-Mashape-Key": "uHYXN0iDX2msh3Dr840maf1RReRVp1Ij8AkjsndcEza97O1w9m",
         "Cache-Control": "no-cache",

@@ -29,6 +29,7 @@ function setExternalLinkURL(location) {
     "async": true,
     "crossDomain": true,
     "url": `http://query.yahooapis.com/v1/public/yql?q=select * from geo.places where text="${location}"&format=json`,
+    timeout: 3000, // sets timeout to 3 seconds
     "method": "GET"
   }
 
@@ -50,6 +51,7 @@ function getWeather() {
     "async": true,
     "crossDomain": true,
     "url": `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&APPID=86c75ec64e0f4f15ec09923d141350f9`,
+    timeout: 3000, // sets timeout to 3 seconds
     "method": "GET"
   }
 
@@ -87,6 +89,7 @@ function getCity() {
     "async": true,
     "crossDomain": true,
     "url": `http://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&sensor=true`,
+    timeout: 3000, // sets timeout to 3 seconds
     "method": "GET"
   }
 

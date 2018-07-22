@@ -7,9 +7,10 @@ function mainSoccer() {
     }
 
     $.ajax({
-        url: `https://myproxi.herokuapp.com/http://api.football-data.org/v1/competitions/467/fixtures`,
+        url: `http://api.football-data.org/v1/competitions/467/fixtures`,
         headers: { "X-Auth-Token": "0a47d94773f74ad3b8c7608f419bf593" },
         type: 'GET',
+        timeout: 3000, // sets timeout to 3 seconds
         beforeSend: function () {
 
             var table = document.getElementById("tableResult");
