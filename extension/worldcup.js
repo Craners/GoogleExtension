@@ -7,10 +7,11 @@ function mainSoccer() {
     }
 
     $.ajax({
-        url: `http://api.football-data.org/v1/competitions/467/fixtures`,
+        // url: `http://api.football-data.org/v2/competitions/2021/matches?matchday=1`,
+        url: `http://api.football-data.org/v2/competitions/2021/matches?dateFrom=2018-08-10&dateTo=2018-08-11`,
         headers: { "X-Auth-Token": "0a47d94773f74ad3b8c7608f419bf593" },
         type: 'GET',
-        timeout: 3000, // sets timeout to 3 seconds
+        // timeout: 3000, // sets timeout to 3 seconds
         beforeSend: function () {
 
             var table = document.getElementById("tableResult");
@@ -28,7 +29,7 @@ function mainSoccer() {
         success: function (response) {
 
             $('#tableResult').html("");
-            var games = response.fixtures;
+            var games = response.matches;
             var game = [];
             games.forEach(element => {
                 var date = moment(element.date);
@@ -53,14 +54,14 @@ function mainSoccer() {
                 var td2 = document.createElement("td");
                 var td3 = document.createElement("td");
                 var td4 = document.createElement("td");
-                var txt = document.createTextNode(game[index].homeTeamName);
+                var txt = document.createTextNode(game[index].homeTeam.name);
                 if (game[index].result.goalsHomeTeam != null) {
                     var txt2 = document.createTextNode(game[index].result.goalsHomeTeam + ":" + game[index].result.goalsAwayTeam);
                 }
                 else {
                     var txt2 = document.createTextNode("-:-");
                 }
-                var txt3 = document.createTextNode(game[index].awayTeamName);
+                var txt3 = document.createTextNode(game[index].awayTeam.name);
                 if (game[index].status == "FINISHED") {
                     var txt4 = document.createTextNode("FT");
                     td4.id = "colorGreen";
