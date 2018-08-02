@@ -155,6 +155,10 @@ th, td
 {
   vertical-align: middle !important;
   text-align: center !important;
+}
+
+th{
+
   padding: 0px !important;
 }
 .md-18
@@ -311,5 +315,16 @@ i{
 }
 
 #teamNames{
-  font-size: 85%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 20%;
+}
+
+#status{
+  width: 20%;
+}
+
+#result{
+  width: 15%;
 }
