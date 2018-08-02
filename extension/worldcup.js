@@ -55,8 +55,8 @@ function mainSoccer() {
                 var td3 = document.createElement("td");
                 var td4 = document.createElement("td");
                 var txt = document.createTextNode(game[index].homeTeam.name);
-                if (game[index].result.goalsHomeTeam != null) {
-                    var txt2 = document.createTextNode(game[index].result.goalsHomeTeam + ":" + game[index].result.goalsAwayTeam);
+                if (game[index].score.fullTime.homeTeam != null) {
+                    var txt2 = document.createTextNode(game[index].score.fullTime.homeTeam + ":" + game[index].score.fullTime.awayTeam);
                 }
                 else {
                     var txt2 = document.createTextNode("-:-");
@@ -82,8 +82,12 @@ function mainSoccer() {
                 }
 
                 td.appendChild(txt);
+                td.id = "teamNames";
                 td2.appendChild(txt2);
                 td3.appendChild(txt3);
+                td3.id = "teamNames";
+                td3.marquee();
+                // <marquee behavior="scroll" direction="left">Your scrolling text goes here</marquee>
                 td4.appendChild(txt4);
 
                 tr.appendChild(td);

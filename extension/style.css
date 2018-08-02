@@ -309,3 +309,7 @@ i{
 .scrollable {
   overflow: auto;
 }
+
+#teamNames{
+  font-size: 85%;
+}
