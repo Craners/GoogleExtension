@@ -1,4 +1,7 @@
 var dateFormat = 'H:mm'; //<-------- This part will get rid of the warning.
+var dateFortmatedGames = 'YYYY-MM-DD'
+var today = moment();
+var todayForGames = (today).format(dateFortmatedGames);
 
 function mainSoccer() {
     var switchArr = GetLocal("switch");
@@ -8,7 +11,7 @@ function mainSoccer() {
 
     $.ajax({
         // url: `http://api.football-data.org/v2/competitions/2021/matches?matchday=1`,
-        url: `http://api.football-data.org/v2/competitions/2021/matches?dateFrom=2018-08-10&dateTo=2018-08-11`,
+        url: `http://api.football-data.org/v2/competitions/2021/matches?dateFrom=${todayForGames}&dateTo=${(moment(todayForGames).add(1,'days')).format(dateFortmatedGames)}`,
         headers: { "X-Auth-Token": "0a47d94773f74ad3b8c7608f419bf593" },
         type: 'GET',
         // timeout: 3000, // sets timeout to 3 seconds
@@ -33,7 +36,6 @@ function mainSoccer() {
             var game = [];
             games.forEach(element => {
                 var date = moment(element.date);
-                var today = moment();
                 today = today.format('M') + "/" + today.format('D');
                 date = date.format('M') + "/" + date.format('D');
                 if (date == today) {
