@@ -42,6 +42,7 @@ span {
 
 .layout-transparent {
   background: center / cover;
+  opacity: 0;
 }
 
 .mdl-navigation{
