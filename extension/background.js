@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     var check = moment(moment(), 'YYYY/MM/DD');
     var day = check.format('D');
-    var rand = Math.floor((Math.random() * 8) + 1);
+    var rand = Math.floor((Math.random() * 10) + 1);
 
     var obj = {
 
@@ -15,7 +15,7 @@ $(document).ready(function () {
       "randomNumber": rand
     }
     SaveOneOnly('BackGround', obj);
-    $('.layout-transparent').css('background-image', 'url(' + `../background/${data.randomNumber}.jpg` + ')');
+    $('.layout-transparent').css('background-image', 'url(' + `../background/${rand}.jpg` + ')');
     $('.layout-transparent').animate({ opacity: 1 }, { duration: 'slow' });
   } else {
 
@@ -33,7 +33,7 @@ $(document).ready(function () {
     }
     else {
 
-      var rand = Math.floor((Math.random() * 8) + 1);
+      var rand = Math.floor((Math.random() * 10) + 1);
       data.today = day;
       data.randomNumber = rand;
 
