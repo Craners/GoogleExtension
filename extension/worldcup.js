@@ -88,7 +88,6 @@ function mainSoccer() {
                 td2.appendChild(txt2);
                 td3.appendChild(txt3);
                 td3.id = "teamNames";
-                td3.marquee();
                 // <marquee behavior="scroll" direction="left">Your scrolling text goes here</marquee>
                 td4.appendChild(txt4);
 
