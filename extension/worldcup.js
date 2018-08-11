@@ -11,7 +11,7 @@ function mainSoccer() {
 
     $.ajax({
         // url: `http://api.football-data.org/v2/competitions/2021/matches?matchday=1`,
-        url: `http://api.football-data.org/v2/competitions/2021/matches?dateFrom=${todayForGames}&dateTo=${(moment(todayForGames).add(1,'days')).format(dateFortmatedGames)}`,
+        url: `http://api.football-data.org/v2/competitions/2021/matches?dateFrom=${todayForGames}&dateTo=${(moment(todayForGames).add(1, 'days')).format(dateFortmatedGames)}`,
         headers: { "X-Auth-Token": "0a47d94773f74ad3b8c7608f419bf593" },
         type: 'GET',
         // timeout: 3000, // sets timeout to 3 seconds
@@ -36,9 +36,11 @@ function mainSoccer() {
             var game = [];
             games.forEach(element => {
                 var date = moment(element.date);
-                today = today.format('M') + "/" + today.format('D');
+                var madeUpDay = today.format('M') + "/" + today.format('D');
+
+                // today = today.format('M') + "/" + today.format('D');
                 date = date.format('M') + "/" + date.format('D');
-                if (date == today) {
+                if (date == madeUpDay) {
 
                     game.push(element);
                 }
