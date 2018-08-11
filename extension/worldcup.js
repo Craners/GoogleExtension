@@ -77,7 +77,7 @@ function mainSoccer() {
                 else {
                     // var def = moment.tz.guess(); //guess where they are?
                     // var m = moment();
-                    var m2 = moment(game[index].date);
+                    var m2 = moment(game[index].utcDate);
                     m2 = (m2).format(dateFormat);
 
                     $("#status").text("Starts at");
